@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-const Nav = (props) => (
+const Banner = (props) => (
   
-  <div id="bannerDiv">
+  <div id="banner" className="division">
     <header>grapevyne</header>
   </div>
 
 );
 
-export default Nav;
+export default Banner;
