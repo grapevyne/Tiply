@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
-import Nav from '../components/Nav.jsx';
+import AddTipModal from '../components/AddTipModal.jsx';
+import Banner from '../components/Banner.jsx';
+import Search from '../components/Search.jsx';
+import TagsBox from '../components/TagsBox.jsx';
+import TipsContainer from './TipsContainer.jsx';
 
 class MainContainer extends Component {
   constructor(props) {
@@ -10,7 +14,10 @@ class MainContainer extends Component {
   render() {
     return(
       <div id='container'>
-        <Nav />
+        <Banner />
+        <Search />
+        <TagsBox />
+        <TipsContainer />
       </div>
     )
   }
