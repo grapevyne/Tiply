@@ -38,6 +38,10 @@ export const inputLocation = (inputLocation) => ({
   payload: inputLocation,
 })
 
+export const toggleTagsDropdown = () => ({
+  type: types.TOGGLE_TAGS_DROPDOWN,
+  payload: toggleTagsDropdown,
+})
 // FOR DEVELOPMENT ONLY
 export const getDummyTips = () => ({
   type: types.GET_DUMMY_TIPS,

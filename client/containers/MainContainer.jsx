@@ -9,12 +9,23 @@ import TipsContainer from './TipsContainer.jsx';
 import { getZipCode, getLocalTips, upvote, downvote, getDummyTips, toggleAddTipsButton, } from '../actions/actions';
 
 
+// const mapDispatchToProps = dispatch => ({
+//   toggleAddTipsButton: () => {
+//     dispatch(toggleAddTipsButton())
+//   },
+//   getZipCode: (zipCode) => {
+//     dispatch(getZipCode(zipCode));
+//   }
+// })
+
+// const mapStateToProps = state => ({
+//   zipCode: state.tips.zipCode,
+//   currentTips: state.tips.currentTips
+// });
+
 const mapDispatchToProps = dispatch => ({
-  toggleAddTipsButton: () => {
-    dispatch(toggleAddTipsButton())
-  },
-  getZipCode: (zipCode) => {
-    dispatch(getZipCode(zipCode));
+  getZipCode: (e) => {
+    dispatch(getZipCode(e.target.value));
   },
   getLocalTips: () => {
     dispatch(getLocalTips());
@@ -27,6 +38,9 @@ const mapDispatchToProps = dispatch => ({
   },
   getDummyTips: () => {
     dispatch(getDummyTips());
+  },
+  toggleAddTipsButton: () => {
+    dispatch(toggleAddTipsButton())
   },
 
 }) 
@@ -43,15 +57,17 @@ class MainContainer extends Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount() {
-    this.props.getDummyTips()
-  }
 
   render() {
-    return(
+    return (
       <div id='container'>
         <Banner />
-        <Search addTipsBoolean = { this.props.addTipsBoolean } toggleAddTipsButton = { this.props.toggleAddTipsButton } />
+        <Search 
+          toggleAddTipsButton = {this.props.toggleAddTipsButton}
+          addTipsBoolean = {this.props.addTipsBoolean}
+          getZipCode={this.props.getZipCode}
+          getLocalTips={this.props.getLocalTips}
+        />
         <TagsBox />
         <TipsContainer
           currentTips={this.props.currentTips}
