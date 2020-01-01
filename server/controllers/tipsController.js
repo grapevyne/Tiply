@@ -41,14 +41,14 @@ tipsController.findTips = (req, res, next) => {
   const queryString = `SELECT * FROM tips WHERE zip = ${zip}`;
 
   db.query(queryString)
-    .then(data => {
+    .then((data) => {
       res.locals.tips = data.rows;
       next();
     })
-    .catch(err => {
+    .catch((err) => {
       res.locals.errors = err;
       next(err);
-    })
+    });
 };
 
 module.exports = tipsController;

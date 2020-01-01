@@ -7,7 +7,8 @@
     "build": "webpack --progress",
     "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --open --hot --inline --progress\" \"nodemon server/server.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server/server.js"
+    "start": "nodemon server/server.js",
+    "lint": "eslint --fix --ignore-path .gitignore --ext .js, .jsx ."
   },
   "author": "grapevyne",
   "license": "ISC",
@@ -25,6 +26,7 @@
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-react": "^7.7.4",
+    "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "concurrently": "^5.0.2",
     "cross-env": "^6.0.3",

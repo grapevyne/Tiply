@@ -10,8 +10,8 @@ import TipsContainer from './TipsContainer.jsx';
 import { getZipCode, getLocalTips, upvote, downvote, getDummyTips } from '../actions/actions';
 
 const mapStateToProps = state => ({
-  zipCode : state.tips.zipCode,
-  currentTips : state.tips.currentTips
+  zipCode: state.tips.zipCode,
+  currentTips: state.tips.currentTips
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -41,7 +41,7 @@ class MainContainer extends Component {
   }
 
   render() {
-    return(
+    return (
       <div id='container'>
         <Banner />
         <Search />
