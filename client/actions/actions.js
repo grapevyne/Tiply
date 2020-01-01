@@ -14,3 +14,18 @@ export const toggleAddTipsButton = () => ({
   type: types.TOGGLE_ADD_TIPS_BUTTON,
   payload: toggleAddTipsButton
 })
+export const upvote = (id) => ({
+  type: types.UPVOTE,
+  payload: id,
+});
+export const downvote = (id) => ({
+  type: types.DOWNVOTE,
+  payload: id,
+});
+
+
+// FOR DEVELOPMENT ONLY
+export const getDummyTips = () => ({
+  type: types.GET_DUMMY_TIPS,
+  payload: null,
+});

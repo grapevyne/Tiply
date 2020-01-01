@@ -1,3 +1,8 @@
 export const GET_ZIP_CODE = 'GET_ZIP_CODE';
 export const GET_LOCAL_TIPS = 'GET_LOCAL_TIPS';
 export const TOGGLE_ADD_TIPS_BUTTON = 'TOGGLE_ADD_TIPS_BUTTON';
+export const UPVOTE = 'UPVOTE';
+export const DOWNVOTE = 'DOWNVOTE';
+
+//FOR DEVELOPMENT ONLY
+export const GET_DUMMY_TIPS = 'GET_DUMMY_TIPS';

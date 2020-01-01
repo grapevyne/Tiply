@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { toggleAddTipsButton } from '../actions/actions';
 import AddTipModal from './AddTipModal.jsx';
 
 const Search = props => {

@@ -7,12 +7,28 @@ class TipsContainer extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.getDummyTips()
+  }
+
   render() {
-    return(
+    return (
       <div id="tips-container">
-        <TipComponent />
-        <TipComponent />
-        <TipComponent />
+        {this.props.currentTips && this.props.currentTips.map(el => (
+          <TipComponent
+            className='tip'
+            key={el.id}
+            id={el.id}
+            header={el.header}
+            blurb={el.blurb}
+            timestamp={el.timestamp}
+            zip={el.zip}
+            votes={el.votes}
+            tags={el.tags}
+            upvote={this.props.upvote}
+            downvote={this.props.downvote}
+          />
+        ))}
       </div>
     )
   }

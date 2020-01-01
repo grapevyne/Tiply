@@ -13,7 +13,7 @@ module.exports = {
     }
   },
 
-  mode: 'development',
+  mode: "production",
   module: {
     rules: [
       {
