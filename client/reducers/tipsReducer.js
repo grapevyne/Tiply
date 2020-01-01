@@ -21,6 +21,15 @@ const initialState = {
       votes: 2,
       tags: ['Sketchy', 'Free']
     },
+    {
+      id: 3,
+      header: 'PARTY TIME',
+      blurb: 'There\'s a PARTY in VENICE!!! COME HERE!',
+      timestamp: 'Dec 2019',
+      zip: '90291',
+      votes: 79,
+      tags: ['Food', 'Free', 'Meetup']
+    },
   ],
   tag: '',
   tempTips: [],

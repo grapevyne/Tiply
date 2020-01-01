@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script|Open+Sans&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -11,9 +12,10 @@
 html, body, #root {
     width: 100%;
     height: 100%;
-    background: rgb(240,175,255);
+    background: #1A2980;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(75deg, #26D0CE, #1A2980);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(75deg, #26D0CE, #1A2980); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-
 #container {
     width: 100%;
     height: 100%;
@@ -21,7 +23,6 @@ html, body, #root {
     justify-content: flex-start;
     flex-direction: column;
 }
-
 .division {
     width: 100%;
     height: 16%;
@@ -29,39 +30,121 @@ html, body, #root {
     background: rgb(220,235,250,1);
     box-shadow: 0px 3px 5px rgba(0,0,0,.7);
 }
-
-/* #banner {
-    
-} */
-
-header {
-    font-size: 20pt;
-    background: transparent;
-}
-
+​
 #search {
     display: flex;
     flex-direction: row;
 }
-
-#tagsBox {
+​
+#tagsDiv {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 .tag {
     color: whitesmoke;
-    background: red;
+    background: rgb(90, 91, 172);
+    width: 60px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: 'Open Sans', sans-serif;
 }
-
-.tips-container {
+​
+#tips-container {
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 }
-
+/* tip card */
 .tip {
     margin: 5px;
     background: rgb(220,235,250,1);
-    width: 45%;
+    width: 400px;
+    height: 250px;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    box-shadow: 3px 3px 5px rgba(0,0,0,.3);
+}
+/* tip header h2 */
+.tip-piece {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    text-align: left;
+}
+.header {
+    grid-area: 1 / 1 / 1 / span 2;
+    justify-content: flex-start;
+}
+/* tip content */
+.blurb {
+    grid-area: 2 / 1 / 2 / span 2;
+    justify-content: flex-start;
+    font-family: 'Open Sans', sans-serif;
+}
+​
+.tags {
+    grid-area: 3 / 1 / 3 / span 2;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.votes {
+    grid-area: 1 / 3 / span 2 / 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.timestamp {
+    grid-area: 3 / 3 / 3 / 3;
+}
+/* grapevyne h1 styling */
+#banner > h1 {
+    font-family: 'Kaushan Script', cursive;
+    font-size: 20pt;
+    background: transparent;
+}
+h1 {
+    font-size: 20pt;
+    background: transparent;
+}
+h3 {
+    cursor: pointer;
+}
+​
+/* searchbar styling */
+.search-bar {
+    padding: 4px;
+    font-size: 14pt;
+    border-radius: 4px;
+}
+​
+.search-button, .add-button {
+    padding: 4px;
+    font-size: 14pt;
+    border-radius: 4px;
+    margin: 2px;
+    font-family: 'Open Sans', sans-serif;
+}
+​
+.search-button {
+    background-color: rgb(51, 122, 252);
+    padding: 4px;
+    color: whitesmoke;
+}
+button > i.fas {
+    color: whitesmoke;
+}
+.add-button {
+    background-color: rgb(5, 194, 144);
+    color: rgb(97, 97, 97);
 }
 
 .addModal { 
@@ -81,49 +164,4 @@ header {
 .cancelOrAccept { 
     flex-direction: row;
     display: flex;
-}
-
-.tip-piece {
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-columns: repeat(3, 1fr);
-    box-shadow: 3px 3px 5px rgba(0,0,0,.3);
-    width: 100%;
-    height: 100%;
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    text-align: left;
-}
-
-.header {
-    grid-area: 1 / 1 / 1 / span 2;
-    justify-content: flex-start;
-}
-.blurb {
-    grid-area: 2 / 1 / 2 / span 2;
-    justify-content: flex-start;
-}
-.tags {
-    grid-area: 3 / 1 / 3 / span 2;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-}
-.votes {
-    grid-area: 1 / 3 / span 2 / 3;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
-.timestamp {
-    grid-area: 3 / 3 / 3 / 3;
-}
-
-h1 {
-    font-size: 20pt;
-    background: transparent;
-}
-h3 {
-    cursor: pointer;
 }
