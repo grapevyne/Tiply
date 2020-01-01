@@ -32,11 +32,23 @@ const tipsReducer = (state=initialState, action) => {
         //ADD DATABASE FETCHING LOGIC HERE
         //HERE, ALL TIPS COINCIDING WITH USER-CHOSEN ZIP CODE
         //SHOULD FILL AN ARRAY TO BE DISPLAYED IN TipsContainer.jsx
+        fetch(`/tips/findTips/${state.zipCode}`)
+          .then(response => response.json())
+          .then(data => {
+            console.log('Response from fetch request to findTips');
+            console.log(data.tips);
+            currentTips = data.tips;
 
-        return {
-          ...state,
-          currentTips,
-        };
+            return {
+              ...state,
+              currentTips,
+            };
+          })
+          .catch(err => {
+            console.log('Error in fetch to findTips', err);
+
+            return;
+          });
       }
       else return state;
 //////////
