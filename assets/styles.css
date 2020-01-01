@@ -6,12 +6,12 @@
     text-align: center;
     justify-content: center;
     align-items: center;
-    background: rgb(240,175,255);
     color: rgb(50,50,50,0.8);
 }
 html, body, #root {
     width: 100%;
     height: 100%;
+    background: rgb(240,175,255);
 }
 
 #container {
@@ -22,16 +22,60 @@ html, body, #root {
     flex-direction: column;
 }
 
-#bannerDiv {
+.division {
     width: 100%;
-    height: 15%;
+    height: 16%;
     display: flex;
     background: rgb(220,235,250,1);
-    box-shadow: 0px 3px 5px rgba(0,0,0,.3);
-    z-index: 5;
+    box-shadow: 0px 3px 5px rgba(0,0,0,.7);
 }
+
+/* #banner {
+    
+} */
 
 header {
     font-size: 20pt;
     background: transparent;
 }
+
+#search {
+    display: flex;
+    flex-direction: row;
+}
+
+#tagsBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.tag {
+    color: whitesmoke;
+    background: red;
+}
+
+.tips-container {
+    width: 100%;
+}
+
+.tip {
+    margin: 5px;
+    background: rgb(220,235,250,1);
+    width: 45%;
+}
+
+.addModal { 
+    position: fixed;
+    height: 600px;
+    width: 700px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: red;
+    flex-direction: column;
+    display: flex;
+}
+
+

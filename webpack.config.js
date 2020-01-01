@@ -6,6 +6,13 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js'
   },
+  devServer: {
+    publicPath: "/build/",
+    proxy: {
+      "/": "http://localhost:3000"
+    }
+  },
+
   mode: 'development',
   module: {
     rules: [
