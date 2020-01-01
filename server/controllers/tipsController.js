@@ -24,12 +24,13 @@ tipsController.updateVotes = (req, res, next) => {
   const { votes } = req.body;
   const { id } = req.params;
 
-  const queryString = `SELECT * FROM TIPS WHERE ID=${id}`;
+  // find row by ID first then update row's vote column value
+  const queryString = `SELECT * FROM TIPS WHERE ID=${id} AND UPDATE tips
+  SET votes = ${votes}`;
 
   db.query(queryString)
     .then((data) => {
       console.log('updateVotes: ', data.rows[0]);
-      data.rows[0].votes = votes;
       next();
     })
     .catch((err) => next(err));
@@ -37,8 +38,9 @@ tipsController.updateVotes = (req, res, next) => {
 
 tipsController.findTips = (req, res, next) => {
   console.log('within findTips');
-  const { zip } = req.body;
-  const queryString = `SELECT * FROM tips WHERE zip = ${zip}`;
+  const { zip } = req.params;
+  console.log('req.params', req.params);
+  const queryString = `SELECT * FROM tips WHERE zip = '${zip}'`;
 
   db.query(queryString)
     .then((data) => {
@@ -47,7 +49,6 @@ tipsController.findTips = (req, res, next) => {
     })
     .catch((err) => {
       res.locals.errors = err;
-      next(err);
     });
 };
 
