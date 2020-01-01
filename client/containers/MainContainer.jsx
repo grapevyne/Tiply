@@ -32,7 +32,7 @@ const mapDispatchToProps = dispatch => ({
 }) 
 
 const mapStateToProps = state => ({
-  addTipsBoolean: state.tips.toggleAddTipsButton,
+  addTipsBoolean: state.people.toggleAddTipsButton,
   zipCode : state.tips.zipCode,
   currentTips : state.tips.currentTips
 });
