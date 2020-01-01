@@ -5,11 +5,11 @@ const router = express.Router();
 const tipsController = require('../controllers/tipsController');
 
 router.post('/createTip', tipsController.createTip, (req, res) => {
-  res.json({ message: res.locals.createMessage });
+  res.json({ message: res.locals.message });
 });
 
-router.post('/:id', tipsController.updateVotes, (req, res) => {
-  res.json({ votes: res.locals.totalVotes })
+router.post('/updateVotes/:id', tipsController.updateVotes, (req, res) => {
+  res.json({ message: res.locals.message })
 });
 
 router.get('/findTips/:zip', tipsController.findTips, (req, res) => {
