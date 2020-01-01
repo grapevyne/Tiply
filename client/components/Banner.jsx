@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 const Banner = (props) => (
   
   <div id="banner" className="division">
-    <header>grapevyne</header>
+    <h1>grapevyne</h1>
   </div>
 
 );
