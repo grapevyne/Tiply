@@ -47,9 +47,9 @@ const tipsReducer = (state=initialState, action) => {
     case types.GET_LOCAL_TIPS:
       if(state.zipCode) {
         
-        //ADD DATABASE FETCHING LOGIC HERE
-        //HERE, ALL TIPS COINCIDING WITH USER-CHOSEN ZIP CODE
-        //SHOULD FILL AN ARRAY TO BE DISPLAYED IN TipsContainer.jsx
+        // Fetch tips from DB with provided zipcode
+        // fill currentTips with resulting data
+
         fetch(`/tips/findTips/${state.zipCode}`)
           .then(response => response.json())
           .then(data => {

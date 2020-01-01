@@ -39,10 +39,20 @@ tipsController.findTips = (req, res, next) => {
   console.log('within findTips');
   const { zip } = req.params;
   console.log('req.params', req.params);
-  const queryString = `SELECT * FROM tips WHERE zip = '${zip}'`;
+
+  const queryString = `
+    SELECT *, tips.id AS "tipId", type AS tag FROM tips
+    FULL OUTER JOIN "tipToTags"
+    ON tips.id = "tipToTags"."tipId" 
+    LEFT OUTER JOIN tags 
+    ON "tagId" = tags.id
+    WHERE zip = '${zip}'
+    `;
 
   db.query(queryString)
     .then(data => {
+      console.log(`Fetch Results for ${zip}: `);
+      console.log(data.rows);
       res.locals.tips = data.rows;
       next();
     })
