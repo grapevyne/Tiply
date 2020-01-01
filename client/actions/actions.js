@@ -16,8 +16,6 @@ export const downvote = (id) => ({
   type: types.DOWNVOTE,
   payload: id,
 });
-
-
 // FOR DEVELOPMENT ONLY
 export const getDummyTips = () => ({
   type: types.GET_DUMMY_TIPS,

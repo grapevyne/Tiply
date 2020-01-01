@@ -37,8 +37,9 @@ tipsController.updateVotes = (req, res, next) => {
 
 tipsController.findTips = (req, res, next) => {
   console.log('within findTips');
-  const { zip } = req.body;
-  const queryString = `SELECT * FROM tips WHERE zip = ${zip}`;
+  const { zip } = req.params;
+  console.log('req.params', req.params);
+  const queryString = `SELECT * FROM tips WHERE zip = '${zip}'`;
 
   db.query(queryString)
     .then(data => {
@@ -46,7 +47,7 @@ tipsController.findTips = (req, res, next) => {
       next();
     })
     .catch(err => {
-      res.locals.errors = err;
+      console.log('Error in tipsController.findTips', err);
       next(err);
     })
 };

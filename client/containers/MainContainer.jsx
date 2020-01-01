@@ -15,8 +15,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getZipCode: (zipCode) => {
-    dispatch(getZipCode(zipCode));
+  getZipCode: (e) => {
+    dispatch(getZipCode(e.target.value));
   },
   getLocalTips: () => {
     dispatch(getLocalTips());
@@ -41,7 +41,10 @@ class MainContainer extends Component {
     return(
       <div id='container'>
         <Banner />
-        <Search />
+        <Search 
+          getZipCode={this.props.getZipCode}
+          getLocalTips={this.props.getLocalTips}
+        />
         <TagsBox />
         <TipsContainer
           currentTips={this.props.currentTips}
