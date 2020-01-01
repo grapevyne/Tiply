@@ -39,14 +39,14 @@ tipsController.updateVotes = (req, res, next) => {
 };
 
 tipsController.findTips = (req, res, next) => {
-  console.log('within findTips');
+  //console.log('within findTips');
   const { zip } = req.params;
-  console.log('req.params', req.params);
+  //console.log('req.params', req.params);
   const queryString = `SELECT * FROM tips WHERE zip = '${zip}'`;
 
   db.query(queryString)
     .then((data) => {
-      console.log(data.rows)
+      //console.log(data.rows)
       res.locals.tips = data.rows;
       next();
     })
@@ -54,5 +54,16 @@ tipsController.findTips = (req, res, next) => {
       res.locals.errors = err;
     });
 };
+
+tipsController.getAllTags = (req, res, next) => {
+  const queryString = 'SELECT * FROM tags';
+  db.query(queryString)
+    .then((data) => {
+      console.log(`get all tags: `, data.rows);
+      res.locals.tags = data.rows;
+      next();
+    })
+    .catch((err) => next(err));
+}
 
 module.exports = tipsController;
