@@ -3,6 +3,9 @@ export const GET_LOCAL_TIPS = 'GET_LOCAL_TIPS';
 export const TOGGLE_ADD_TIPS_BUTTON = 'TOGGLE_ADD_TIPS_BUTTON';
 export const UPVOTE = 'UPVOTE';
 export const DOWNVOTE = 'DOWNVOTE';
+export const INPUT_HEADER ="INPUT_HEADER";
+export const INPUT_BLURB = "INPUT_BLURB";
+export const INPUT_LOCATION = "INPUT_LOCATION";
 
 //FOR DEVELOPMENT ONLY
 export const GET_DUMMY_TIPS = 'GET_DUMMY_TIPS';

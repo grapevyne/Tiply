@@ -23,6 +23,20 @@ export const downvote = (id) => ({
   payload: id,
 });
 
+export const inputHeader = (inputHeader) => ({
+  type: types.INPUT_HEADER,
+  payload: inputHeader,
+})
+
+export const inputBlurb = (inputBlurb) => ({
+  type: types.INPUT_BLURB,
+  payload: inputBlurb,
+})
+
+export const inputLocation = (inputLocation) => ({
+  type: types.INPUT_LOCATION,
+  payload: inputLocation,
+})
 
 // FOR DEVELOPMENT ONLY
 export const getDummyTips = () => ({

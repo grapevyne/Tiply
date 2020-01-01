@@ -6,7 +6,7 @@ import Banner from '../components/Banner.jsx';
 import Search from '../components/Search.jsx';
 import TagsBox from '../components/TagsBox.jsx';
 import TipsContainer from './TipsContainer.jsx';
-import { getZipCode, getLocalTips, upvote, downvote, getDummyTips, toggleAddTipsButton } from '../actions/actions';
+import { getZipCode, getLocalTips, upvote, downvote, getDummyTips, toggleAddTipsButton, } from '../actions/actions';
 
 
 const mapDispatchToProps = dispatch => ({
@@ -32,9 +32,10 @@ const mapDispatchToProps = dispatch => ({
 }) 
 
 const mapStateToProps = state => ({
-  addTipsBoolean: state.people.toggleAddTipsButton,
+  addTipsBoolean: state.tips.toggleAddTipsButton,
   zipCode : state.tips.zipCode,
   currentTips : state.tips.currentTips
+  
 });
 
 
@@ -49,7 +50,6 @@ class MainContainer extends Component {
   render() {
     return(
       <div id='container'>
-        {console.log("this is the dispatch to props: ", this.props.toggleAddTipsButton)}
         <Banner />
         <Search addTipsBoolean = { this.props.addTipsBoolean } toggleAddTipsButton = { this.props.toggleAddTipsButton } />
         <TagsBox />

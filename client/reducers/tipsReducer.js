@@ -5,7 +5,10 @@ const initialState = {
   currentTips: [],
   tag: '',
   tempTips: [],
-
+  toggleAddTipsButton: false,
+  inputHeader: '',
+  inputBlurb: '',
+  inputLocation: '',
 };
 
 const tipsReducer = (state=initialState, action) => {
@@ -65,6 +68,14 @@ case types.DOWNVOTE:
       // currentTips,
     };
 
+//////////
+    case types.TOGGLE_ADD_TIPS_BUTTON:
+      return { 
+        ...state,
+        toggleAddTipsButton: !state.toggleAddTipsButton,
+      };
+      
+
 ////////// FOR DEVELOPMENT ONLY
 case types.GET_DUMMY_TIPS:
   if(!state.zipCode) {
@@ -95,6 +106,27 @@ case types.GET_DUMMY_TIPS:
   }
   else return state;
 //////////
+
+case types.INPUT_HEADER:
+  return {
+    ...state,
+    inputHeader: action.payload,
+  }
+//////////
+
+case types.INPUT_BLURB:
+  return { 
+    ...state,
+    inputBlurb: action.payload,
+  }
+
+//////////
+
+case types.INPUT_LOCATION:
+  return { 
+    ...state,
+    inputLocation: action.payload,
+  }
       default:
         return state;
   }
