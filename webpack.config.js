@@ -1,10 +1,9 @@
-const path = require('path');
-
+const path = require("path");
 module.exports = {
-  entry: './client/index.js',
+  entry: path.resolve(__dirname, "client/index.js"),
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, "build"),
+    filename: "bundle.js"
   },
   devServer: {
     publicPath: "/build/",
@@ -19,20 +18,28 @@ module.exports = {
         test: /\.jsx?/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
+            presets: ["@babel/preset-env", "@babel/preset-react"]
           }
         }
       },
       {
-        test: /\.scss$/,
-        use: [
-          { loader: "style-loader" },
-          { loader: "css-loader" },
-          { loader: "sass-loader" }
-        ],
+        test: /\.s[ac]ss$/i,
+        use: ["style-loader", "css-loader", "sass-loader"]
       },
-    ],
-  },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              esModule: false,
+              publicPath: 'build',
+            }
+          }
+        ],
+      }
+    ]
+  }
 };
