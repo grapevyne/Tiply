@@ -36,9 +36,6 @@ class MainContainer extends Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount() {
-    this.props.getDummyTips()
-  }
 
   render() {
     return(
