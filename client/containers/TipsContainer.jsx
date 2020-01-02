@@ -17,10 +17,14 @@ class TipsContainer extends Component {
     return timeArray;
   }
 
+  componentDidMount() {
+    this.props.getDummyTips()
+  }
+
   render() {
     return (
       <div className="tips-container flex flex-wrap">
-        {this.props.currentTips.map(el => {
+        {this.props.tempTips.map(el => {
           let parsedTime = this.parseTimestamp(el.timestamp);
           return <TipComponent
             className='tip'
