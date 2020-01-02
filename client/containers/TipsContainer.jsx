@@ -7,13 +7,13 @@ class TipsContainer extends Component {
     super(props);
   }
 
-  componentDidUpdate() { 
+  componentDidUpdate() {
     console.log("updated currentTips: ", this.props.currentTips)
   }
 
   render() {
     return (
-      <div id="tips-container">
+      <div className="tips-container flex flex-wrap">
         {this.props.currentTips.map(el => (
           <TipComponent
             className='tip'

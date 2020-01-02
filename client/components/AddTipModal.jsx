@@ -31,7 +31,7 @@ const mapStateToProps = state => ({
 const AddTipModal = props => (
   <div className="addModal">
     <h1 className="modal-h1">Add a Tip</h1>
-    <input type="text" placeholder="Header" onChange={props.inputHeaderFunction} ></input>
+    <input type="text" placeholder="Header" onChange={props.inputHeaderFunction} />
     <textarea rows="4" cols="50" placeholder="Blurb" onChange={props.inputBlurb} ></textarea>
     <input placeholder="Location" onChange={props.inputLocation} ></input>
 
