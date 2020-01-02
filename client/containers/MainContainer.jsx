@@ -6,8 +6,8 @@ import Banner from '../components/Banner.jsx';
 import Search from '../components/Search.jsx';
 import TagsBox from '../components/TagsBox.jsx';
 import TipsContainer from './TipsContainer.jsx';
-import { getZipCode, getLocalTips, upvote, downvote, getDummyTips, toggleAddTipsButton, selectTag, filterTipsByTag} from '../actions/actions';
-import { fetchTips } from '../actions/fetchTips'
+import { getZipCode, upvote, downvote, getDummyTips, toggleAddTipsButton, selectTag, filterTipsByTag} from '../actions/actions';
+import { fetchTips, fetchTags  } from '../actions/actionsFunctions'
 
 
 const mapStateToProps = state => ({
@@ -16,7 +16,7 @@ const mapStateToProps = state => ({
   currentTips: state.tips.currentTips,
   tempTips: state.tips.tempTips,
   tagList: state.tips.tagList,
-  tempTags: state.tips.tempTags
+  tempTags: state.tips.tempTags,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -35,7 +35,7 @@ const mapDispatchToProps = dispatch => ({
   toggleAddTipsButton: () => {
     dispatch(toggleAddTipsButton())
   },
-  getLocalTips: (zip) => {
+  fetchTips: (zip) => { 
     dispatch(fetchTips(zip))
   },
 
@@ -45,11 +45,19 @@ const mapDispatchToProps = dispatch => ({
     dispatch(filterTipsByTag())
   },
 
+  fetchTags: () => { 
+    dispatch(fetchTags())
+  }
 })
 
 class MainContainer extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() { 
+    //fetch tags when component mount:
+    this.props.fetchTags();
   }
 
   render() {
@@ -70,6 +78,8 @@ class MainContainer extends Component {
           getTags={this.props.getTags}
           selectTag={this.props.selectTag}
           filterTipsByTag={this.props.filterTipsByTag}
+          fetchTips={this.props.fetchTips}
+          zipCode = {this.props.zipCode}
         />
         <TipsContainer
           currentTips={this.props.currentTips}

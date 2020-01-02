@@ -43,12 +43,28 @@ export const toggleTagsDropdown = () => ({
   payload: toggleTagsDropdown,
 })
 
-// TAGS REDUCER
-export const getTags = () => ({
-  type: types.GET_TAGS,
-  payload: null,
-});
+export function addTip(tipData) {
+  return (dispatch) => {
+    console.log('Attempting Post To DB with tipData: ', tipData);
+    dispatch({ type: types.POST_TIP });
+    fetch(`/tips/createTip`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(tipData),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log('Data returned from addTip post request: ');
+        console.log(data);
+      })
+      // .then(data => dispatch({ type: types.ADD_TIP, data }))
+      .catch(err => console.log("Error in addTip: ", err))
+  };
+}
 
+//TAGS
 export const selectTag = (tag) => ({
   type: types.SELECT_TAG,
   payload: tag,

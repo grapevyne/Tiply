@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { inputHeader, inputBlurb, inputLocation, toggleTagsDropdown, toggleAddTipsButton } from '../actions/actions'
+import { inputHeader, inputBlurb, inputLocation, toggleTagsDropdown, toggleAddTipsButton, addTip } from '../actions/actions';
 
 const mapDispatchToProps = dispatch => ({
   inputHeaderFunction: e => {
@@ -21,11 +21,21 @@ const mapDispatchToProps = dispatch => ({
 
   toggleAddTipsButton: () => {
     dispatch(toggleAddTipsButton())
+  },
+
+  addTip: (tipData) => {
+    dispatch(addTip(tipData))
   }
 });
 
 const mapStateToProps = state => ({
   tagsDropdownBoolean: state.tips.toggleTagsDropdown,
+  tagList: state.tips.tagList,
+  tipData: {
+    header: state.tips.inputHeader,
+    blurb: state.tips.inputBlurb,
+    zip: state.tips.inputLocation,
+  },
 })
 
 const AddTipModal = props => (
@@ -33,16 +43,17 @@ const AddTipModal = props => (
     <h1 className="modal-h1">Add a Tip</h1>
     <input type="text" placeholder="Header" onChange={props.inputHeaderFunction} />
     <textarea rows="4" cols="50" placeholder="Blurb" onChange={props.inputBlurb} ></textarea>
-    <input placeholder="Location" onChange={props.inputLocation} ></input>
+    <input type="text" placeholder="Location" onChange={props.inputLocation} />
 
     <div className="dropDownTags">
       <button onClick={props.toggleTagsDropdown} >Click me to see all Available Tags!</button>
       {props.tagsDropdownBoolean ? <h1> I love you </h1> : null}
     </div>
 
-    <div className="cancelOrAccept">
-      <button onClick={props.toggleAddTipsButton} >Cancel</button>
-      <button>Submit</button>
+    <div className = "cancelOrAccept">
+      <button onClick = {props.toggleAddTipsButton} >Cancel</button>
+      <button className="modal-submit" onClick={() => props.addTip(props.tipData)}>Submit</button>
+      {/* <button onClick={() => console.log(props.tipData)}>Submit</button> */}
     </div>
   </div>
 
