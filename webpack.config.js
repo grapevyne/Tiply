@@ -11,7 +11,8 @@ module.exports = {
       "/": "http://localhost:3000"
     }
   },
-  mode: process.env.NODE_ENV,
+
+  mode: "production",
   module: {
     rules: [
       {

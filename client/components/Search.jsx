@@ -1,13 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
+import AddTipModal from './AddTipModal.jsx';
 
-const Search = (props) => (
-
-  <div id="search" className="division">
-    <input type="text" placeholder="Enter 5-digit Zip Code" onChange={props.getZipCode} className="search-bar" />
-    <button type="button" onClick={props.getLocalTips} className="search-button"><i class="fas fa-search-location"></i>Search</button>
-    <button type="button" className="add-button"><i class="fas fa-plus"></i> Tip</button>
-  </div>
-
-);
+const Search = props => {
+  return (
+    <div id="search" className="division">
+      <input type="text" placeholder="Zip Code"></input>
+      <button> Enter </button>
+      <input
+        type="button"
+        value="Add a Tip"
+        onClick={props.toggleAddTipsButton}
+      />
+      {props.addTipsBoolean ? <AddTipModal /> : null}
+    </div>
+  )
+};
 
 export default Search;
