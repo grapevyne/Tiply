@@ -7,7 +7,7 @@ const Search = props => {
   return (
     <div id="search" className="division">
       <input type="text" placeholder="Zip Code" onChange={props.getZipCode} className="search-input" />
-      <button onClick={() => props.getLocalTips(props.zipCode)} className="search-button"><FontAwesomeIcon icon={faSearchLocation} className="searchIcon" style={{ color: 'whitesmoke' }} />Search ZIP</button>
+      <button onClick={() => props.getLocalTips(props.zipCode)} className="search-button"><FontAwesomeIcon icon={faSearchLocation} />Search ZIP</button>
       <button onClick={props.toggleAddTipsButton} className="add-button">
         Add a Tip
       </button>
