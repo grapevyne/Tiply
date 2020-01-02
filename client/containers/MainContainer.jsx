@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import AddTipModal from '../components/AddTipModal.jsx';
 import Banner from '../components/Banner.jsx';
 import Search from '../components/Search.jsx';
 import TagsBox from '../components/TagsBox.jsx';
 import TipsContainer from './TipsContainer.jsx';
-import { getZipCode, getLocalTips, upvote, downvote, getDummyTips, toggleAddTipsButton, } from '../actions/actions';
+import { getZipCode, upvote, downvote, getDummyTips, toggleAddTipsButton, } from '../actions/actions';
 import { fetchTips, fetchTags  } from '../actions/actionsFunctions'
 
 
