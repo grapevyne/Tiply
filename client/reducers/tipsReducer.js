@@ -141,6 +141,12 @@ const tipsReducer = (state = initialState, action) => {
         inputBlurb: action.payload,
       }
 
+    case types.INPUT_LOCATION:
+      return {
+        ...state,
+        inputLocation: action.payload,
+      }
+
     //////////
     case types.TOGGLE_TAGS_DROPDOWN:
       return {
@@ -162,7 +168,18 @@ case types.FETCHING_TIPS:
     currentTips: action.data.tips,
     requesting: false,
   }
-/////////
+
+case types.POST_TIP:
+  return {
+    ...state,
+    requesting: true,
+  }
+
+case types.ADD_TIP:
+  return {
+    ...state,
+    requesting: false,
+  }
 case types.START_FETCHING_TAGS:
   return { 
     ...state,
