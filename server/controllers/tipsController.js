@@ -63,4 +63,15 @@ tipsController.findTips = (req, res, next) => {
     });
 };
 
+tipsController.getAllTags = (req, res, next) => {
+  const queryString = 'SELECT * FROM tags';
+  db.query(queryString)
+    .then((data) => {
+      console.log(`get all tags: `, data.rows);
+      res.locals.tags = data.rows;
+      next();
+    })
+    .catch((err) => next(err));
+}
+
 module.exports = tipsController;
