@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { inputHeader, inputBlurb, inputLocation, toggleTagsDropdown } from '../actions/actions'
+import { inputHeader, inputBlurb, inputLocation, toggleTagsDropdown, toggleAddTipsButton } from '../actions/actions'
 
 const mapDispatchToProps = dispatch => ({
   inputHeaderFunction: e => {
@@ -17,6 +17,10 @@ const mapDispatchToProps = dispatch => ({
 
   toggleTagsDropdown: () => {
     dispatch(toggleTagsDropdown())
+  },
+
+  toggleAddTipsButton: () => { 
+    dispatch(toggleAddTipsButton())
   }
 });
 
@@ -33,12 +37,11 @@ const AddTipModal = props => (
     
     <div className = "dropDownTags">
       <button onClick = {props.toggleTagsDropdown} >Click me to see all Available Tags!</button>
-      {console.log(props.tagsDropdownBoolean)}
       {props.tagsDropdownBoolean? <h1> I love you </h1>: null}
     </div>
 
     <div className = "cancelOrAccept">
-      <button>Cancel</button>
+      <button onClick = {props.toggleAddTipsButton} >Cancel</button>
       <button>Submit</button>
     </div>
   </div>
