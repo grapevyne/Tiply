@@ -161,6 +161,7 @@ input.search-input {
     display: flex;
     justify-content: space-evenly;
      border-radius: 8px;
+     box-shadow: 0px 3px 5px rgba(0,0,0,.7);
 }
 .addModal > textarea{
     min-height: 50px;
