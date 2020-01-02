@@ -114,7 +114,7 @@ html, body, #root {
 }
 /* grapevyne h1 styling */
 #banner > h1 {
-    font-size: 18pt;
+    font-size: 22pt;
     font-family: 'Open Sans', sans-serif;
     background: -webkit-linear-gradient(45deg,rgb(90, 0, 169), rgb(73, 182, 215), rgb(60, 123, 232));
     background-clip: text;
@@ -151,7 +151,7 @@ button, .search-button, .add-button {
     right: 0;
     bottom: 0;
     margin: auto;
-    background-color: rgb(165, 170, 211);
+    background-color: rgb(48, 80, 160);
     flex-direction: column;
     display: flex;
     justify-content: space-evenly;
