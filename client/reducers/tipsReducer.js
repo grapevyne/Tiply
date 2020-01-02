@@ -162,39 +162,39 @@ const tipsReducer = (state = initialState, action) => {
         requesting: true,
       }
 
-case types.FETCHING_TIPS:
-  return { 
-    ...state,
-    currentTips: action.data.tips,
-    requesting: false,
-  }
+    case types.FETCHING_TIPS:
+      return {
+        ...state,
+        currentTips: action.data.tips,
+        requesting: false,
+      }
 
-case types.POST_TIP:
-  return {
-    ...state,
-    requesting: true,
-  }
+    case types.POST_TIP:
+      return {
+        ...state,
+        requesting: true,
+      }
 
-case types.ADD_TIP:
-  return {
-    ...state,
-    requesting: false,
-  }
-case types.START_FETCHING_TAGS:
-  return { 
-    ...state,
-    tagList: [...state.tagList],
-    requesting: true,
-  }
+    case types.ADD_TIP:
+      return {
+        ...state,
+        requesting: false,
+      }
+    case types.START_FETCHING_TAGS:
+      return {
+        ...state,
+        tagList: [...state.tagList],
+        requesting: true,
+      }
 
-case types.FETCHING_TAGS:
-  return { 
-    ...state,
-    tagList: action.data.tags,
-    requesting: false,
-  }
+    case types.FETCHING_TAGS:
+      return {
+        ...state,
+        tagList: action.data.tags,
+        requesting: false,
+      }
 
-/////////
+    /////////
 
     default: {
       return state;
