@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans|Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Merienda|Raleway&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -115,7 +115,7 @@ html, body, #root {
 /* grapevyne h1 styling */
 #banner > h1 {
     font-size: 22pt;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Merienda', cursive;
     background: -webkit-linear-gradient(45deg,rgb(90, 0, 169), rgb(73, 182, 215), rgb(60, 123, 232));
     background-clip: text;
     -webkit-background-clip: text;
@@ -162,7 +162,7 @@ button, .search-button, .add-button {
     max-height: 60%;
 }
 .modal-h1 {
-    color: rgb(120, 215, 228);
+    color: whitesmoke;
 }
 .addModal > input, textarea {
     border-radius: 8px;
