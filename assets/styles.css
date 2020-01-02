@@ -195,8 +195,10 @@ input.search-input {
 }
 .purple {
     color: rgb(119, 0, 255);
+    font-size: 14pt;
 }
 .green {
     color: rgb(29, 187, 150);
+    font-size: 14pt;
 }
 
