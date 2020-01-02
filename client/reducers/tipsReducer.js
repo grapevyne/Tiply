@@ -32,32 +32,6 @@ const tipsReducer = (state = initialState, action) => {
       }
       else return state;
     //////////
-    // case types.GET_LOCAL_TIPS:
-    //   console.log(state.zipCode);
-    //   if(state.zipCode) {
-    //     // Fetch tips from DB with provided zipcode
-    //     // fill currentTips with resulting data
-    //     fetch(`/tips/findTips/${state.zipCode}`)
-    //       .then(response => response.json())
-    //       .then(data => {
-    //         console.log('Response from fetch request to findTips');
-    //         console.log("data from the fetch request ", data.tips);
-    //         currentTips = data.tips;
-
-    //         return {
-    //           ...state,
-    //           currentTips,
-    //         };
-    //       })
-    //       .catch(err => {
-    //         console.log('Error in fetch to findTips', err);
-
-    //         return state;
-    //       });
-    //   }
-    //   else return state;
-
-    //////////
     case types.UPVOTE:
 
       currentTips = [...state.currentTips]
@@ -117,50 +91,72 @@ const tipsReducer = (state = initialState, action) => {
         currentTips,
       };
 
-//////////
+    //////////
     case types.TOGGLE_ADD_TIPS_BUTTON:
-      return { 
+      return {
         ...state,
         toggleAddTipsButton: !state.toggleAddTipsButton,
       };
-      
-//////////
 
-case types.INPUT_HEADER:
-  return {
-    ...state,
-    inputHeader: action.payload,
-  }
-//////////
 
-case types.INPUT_BLURB:
-  return { 
-    ...state,
-    inputBlurb: action.payload,
-  }
+    ////////// FOR DEVELOPMENT ONLY
+    case types.GET_DUMMY_TIPS:
+      if (!state.zipCode) {
+        currentTips = [
+          {
+            id: 1,
+            header: 'Test Tip',
+            blurb: 'This is a test tip',
+            timestamp: 'Dec 2019',
+            zip: '90039',
+            votes: 10,
+            tags: ['Food', 'Nature']
+          },
+          {
+            id: 2,
+            header: 'BAD BOY',
+            blurb: 'There\'s a BAD BOY in VENICE!!! WATCH OUT!',
+            timestamp: 'Dec 2019',
+            zip: '90039',
+            votes: 2,
+            tags: ['Sketchy', 'Free']
+          },
+        ]
+        return {
+          ...state,
+          currentTips,
+        };
+      }
+      else return state;
+    //////////
 
-//////////
+    case types.INPUT_HEADER:
+      return {
+        ...state,
+        inputHeader: action.payload,
+      }
+    //////////
 
-case types.INPUT_LOCATION:
-  return { 
-    ...state,
-    inputLocation: action.payload,
-  }
+    case types.INPUT_BLURB:
+      return {
+        ...state,
+        inputBlurb: action.payload,
+      }
 
-//////////
-case types.TOGGLE_TAGS_DROPDOWN:
-  return { 
-    ...state,
-    toggleTagsDropdown: !state.toggleTagsDropdown,
-  }
+    //////////
+    case types.TOGGLE_TAGS_DROPDOWN:
+      return {
+        ...state,
+        toggleTagsDropdown: !state.toggleTagsDropdown,
+      }
 
-/////////
-case types.START_FETCHING_TIPS:
-  return {
-    ...state,
-    currentTips: [...state.currentTips],
-    requesting: true,
-  }
+    /////////
+    case types.START_FETCHING_TIPS:
+      return {
+        ...state,
+        currentTips: [...state.currentTips],
+        requesting: true,
+      }
 
 case types.FETCHING_TIPS:
   return { 
@@ -177,15 +173,9 @@ case types.START_FETCHING_TAGS:
   }
 
 case types.FETCHING_TAGS:
-  tagListArr = [];
-  for (let i = 0; i < action.data.tags.length; i++) { 
-    tagListArr.push(action.data.tags[i].type)
-  }
-
-
   return { 
     ...state,
-    tagList: tagListArr,
+    tagList: action.data.tags,
     requesting: false,
   }
 

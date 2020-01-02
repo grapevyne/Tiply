@@ -33,13 +33,13 @@ const mapDispatchToProps = dispatch => ({
   toggleAddTipsButton: () => {
     dispatch(toggleAddTipsButton())
   },
-  getLocalTips: (zip) => { 
+  getLocalTips: (zip) => {
     dispatch(fetchTips(zip))
   },
   fetchTags: () => { 
     dispatch(fetchTags())
   }
-}) 
+})
 
 class MainContainer extends Component {
   constructor(props) {
@@ -54,14 +54,13 @@ class MainContainer extends Component {
   render() {
     return (
       <div id='container'>
-        {console.log("this is the tagList: ",this.props.tagList)}
         <Banner />
-        <Search 
-          toggleAddTipsButton = {this.props.toggleAddTipsButton}
-          addTipsBoolean = {this.props.addTipsBoolean}
+        <Search
+          toggleAddTipsButton={this.props.toggleAddTipsButton}
+          addTipsBoolean={this.props.addTipsBoolean}
           getZipCode={this.props.getZipCode}
           getLocalTips={this.props.getLocalTips}
-          zipCode = {this.props.zipCode}
+          zipCode={this.props.zipCode}
         />
         <TagsBox />
         <TipsContainer

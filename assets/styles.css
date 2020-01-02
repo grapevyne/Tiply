@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Kaushan+Script|Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Merienda|Raleway&display=swap');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Helvetica', sans-serif;
+    font-family: 'Raleway', sans-serif;
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -36,7 +36,7 @@ html, body, #root {
     flex-direction: row;
 }
 ​
-#tagsDiv {
+div.division.tagsDiv {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -44,20 +44,22 @@ html, body, #root {
 }
 .tag {
     color: whitesmoke;
+    font-size: 10px;
     background: rgb(90, 91, 172);
     width: 60px;
     height: 30px;
+    margin: 2px;
     display: flex;
     align-items: center;
     cursor: pointer;
     border-radius: 4px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
-​
-#tips-container {
+.tips-container {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
 }
 /* tip card */
 .tip {
@@ -69,6 +71,7 @@ html, body, #root {
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(3, 1fr);
     box-shadow: 3px 3px 5px rgba(0,0,0,.3);
+    border-radius: 8px;
 }
 /* tip header h2 */
 .tip-piece {
@@ -88,7 +91,7 @@ html, body, #root {
 .blurb {
     grid-area: 2 / 1 / 2 / span 2;
     justify-content: flex-start;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
 ​
 .tags {
@@ -102,14 +105,18 @@ html, body, #root {
     flex-direction: column;
     justify-content: space-evenly;
 }
+
 .timestamp {
     grid-area: 3 / 3 / 3 / 3;
 }
 /* grapevyne h1 styling */
 #banner > h1 {
-    font-family: 'Kaushan Script', cursive;
-    font-size: 20pt;
-    background: transparent;
+    font-size: 22pt;
+    font-family: 'Merienda', cursive;
+    background: -webkit-linear-gradient(45deg,rgb(90, 0, 169), rgb(73, 182, 215), rgb(60, 123, 232));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 h1 {
     font-size: 20pt;
@@ -126,42 +133,54 @@ h3 {
     border-radius: 4px;
 }
 ​
-.search-button, .add-button {
-    padding: 4px;
-    font-size: 14pt;
+#search > input.search-input, button.search-button, button.add-button {
+    padding: 2px;
+    font-size: 12pt;
     border-radius: 4px;
     margin: 2px;
-    font-family: 'Open Sans', sans-serif;
 }
-​
 .search-button {
-    background-color: rgb(51, 122, 252);
-    padding: 4px;
+    background-color: rgb(29, 118, 219);
     color: whitesmoke;
 }
-button > i.fas {
-    color: whitesmoke;
+input.search-input {
+    font-size: 12pt;
+    border-radius: 4px;
 }
-.add-button {
-    background-color: rgb(5, 194, 144);
-    color: rgb(97, 97, 97);
-}
-
 .addModal { 
     position: fixed;
-    height: 600px;
-    width: 700px;
+    height: 400px;
+    width: 500px;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     margin: auto;
-    background-color: red;
+    background-color: rgb(48, 80, 160);
     flex-direction: column;
     display: flex;
+    justify-content: space-evenly;
+     border-radius: 8px;
+     box-shadow: 0px 3px 5px rgba(0,0,0,.7);
 }
-
+.addModal > textarea{
+    min-height: 50px;
+    max-width: 80%;
+    max-height: 60%;
+}
+.modal-h1 {
+    color: whitesmoke;
+}
+.addModal > input, textarea {
+    border-radius: 8px;
+}
 .cancelOrAccept { 
     flex-direction: row;
     display: flex;
+}
+.red {
+    color: rgb(119, 0, 255);
+}
+.green {
+    color: rgb(29, 187, 150);
 }
