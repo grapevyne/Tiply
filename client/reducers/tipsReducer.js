@@ -27,7 +27,7 @@ const initialState = {
       blurb: 'There\'s a PARTY in VENICE!!! COME HERE!',
       timestamp: 'Dec 2019',
       zip: '90291',
-      votes: 79,
+      votes: 9,
       tags: ['Food', 'Free', 'Meetup']
     },
   ],

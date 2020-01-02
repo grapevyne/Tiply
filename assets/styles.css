@@ -139,10 +139,11 @@ h3 {
     padding: 4px;
     color: whitesmoke;
 }
+/* search and add button icon color */
 button > i.fas {
     color: whitesmoke;
 }
 .add-button {
-    background-color: rgb(5, 194, 144);
-    color: rgb(97, 97, 97);
+    background-color: rgb(5, 194, 112);
+    color: whitesmoke;
 }
