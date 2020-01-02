@@ -52,7 +52,7 @@ const AddTipModal = props => (
 
     <div className = "cancelOrAccept">
       <button onClick = {props.toggleAddTipsButton} >Cancel</button>
-      <button onClick={() => props.addTip(props.tipData)}>Submit</button>
+      <button className="modal-submit" onClick={() => props.addTip(props.tipData)}>Submit</button>
       {/* <button onClick={() => console.log(props.tipData)}>Submit</button> */}
     </div>
   </div>

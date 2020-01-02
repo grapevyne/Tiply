@@ -8,13 +8,8 @@ tipsController.createTip = (req, res, next) => {
   // console.log('inside controller CreateTip');
   db.query(queryString)
     .then((data) => {
-      // console.log(`CREATE TIP:`, header, blurb, zip)
-      // console.log('data in createTip: ', data);
-      // if (data.rows[0].length !== data.rows[0].length - 1) {
-      //   console.log('Created tip');
+      // console.log(data)
       res.locals.message = 'Tip created successfully';
-      //   next();
-      // }
       next();
     })
     .catch((err) => { console.log(err); return next(err); });
@@ -26,12 +21,13 @@ tipsController.updateVotes = (req, res, next) => {
   const { id } = req.params;
 
   // find row by ID first then update row's vote column value
+  console.log(`id from req.params in updateVotes: `, id, `votes from req.body`, votes)
   const queryString = `UPDATE tips
   SET votes = ${votes} WHERE id=${id}`;
 
   db.query(queryString)
     .then((data) => {
-      console.log('updateVotes: ', data.rows[0]);
+      console.log('updateVotes: ', data);
       res.locals.message = 'Votes updated successfully';
       next();
     })

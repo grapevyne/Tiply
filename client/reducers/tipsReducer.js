@@ -11,6 +11,7 @@ const initialState = {
   inputLocation: '',
   tagList: [],
   toggleTagsDropdown: false,
+  currentVote: ''
 };
 
 const tipsReducer = (state = initialState, action) => {
@@ -36,23 +37,21 @@ const tipsReducer = (state = initialState, action) => {
 
       currentTips = [...state.currentTips]
       for (let i = 0; i < currentTips.length; i++) {
+        console.log(`UPVOTE ID: `, currentTips[i].tipId)
         if (currentTips[i].id === action.payload) {
-          currentTips[i].votes++;
+          currentTips[i].votes += 1;
           console.log('UPVOTED', currentTips[i].header);
           //ADD DATABASE UPVOTE PUT-LOGIC HERE
           //POTENTIALLY UPDATE STATE TO AVOID A SECOND /GET REQUEST??
-          fetch(`/tips/updateVotes/${currentTips[i].id}`, {
+          fetch(`/tips/updateVotes/${currentTips[i].tipId}`, {
             method: "POST",
             header: {
               "Content-Type": "application/json"
             },
-            body: {
-              votes: JSON.stringify({
-                votes: currentTips[i].votes
-              })
-            }
+            body: JSON.stringify({ votes: currentTips[i].votes })
           })
-            .then(data => console.log(data.rows[0]))
+            .then(res => res.json())
+            .then(data => console.log(`upvote data: `, data))
             .catch(err => console.log(err));
         }
       }
@@ -66,23 +65,22 @@ const tipsReducer = (state = initialState, action) => {
 
       currentTips = [...state.currentTips]
       for (let i = 0; i < currentTips.length; i++) {
-        if (currentTips[i].id === action.payload) {
+        console.log(`ID: `, currentTips[i].tipId)
+        if (currentTips[i].tipId === action.payload) {
           currentTips[i].votes--;
-          console.log('DOWNVOTED', currentTips[i].header);
+          //console.log('DOWNVOTED', currentTips[i].header);
           //ADD DATABASE UPVOTE PUT-LOGIC HERE
           //POTENTIALLY UPDATE STATE TO AVOID A SECOND /GET REQUEST??
-          fetch(`/tips/updateVotes/${currentTips[i].id}`, {
+          //console.log('currentTips[i] and its id: ', currentTips[i], `id:`, currentTips[i].tipId)
+          fetch(`/tips/updateVotes/${currentTips[i].tipId}`, {
             method: "POST",
             header: {
               "Content-Type": "application/json"
             },
-            body: {
-              votes: JSON.stringify({
-                votes: currentTips[i].votes
-              })
-            }
+            body: JSON.stringify({ votes: currentTips[i].votes })
           })
-            .then(data => console.log(data.rows[0]))
+            .then(res => res.json())
+            .then(data => console.log(`downvote data`, data))
             .catch(err => console.log(err));
         }
       }
