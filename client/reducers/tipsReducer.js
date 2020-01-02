@@ -3,24 +3,24 @@ import * as types from '../constants/actionTypes';
 const initialState = {
   zipCode: '',
   currentTips: [
-    {
-      id: 1,
-      header: 'Test Tip',
-      blurb: 'This is a test tip',
-      timestamp: 'Dec 2019',
-      zip: '90039',
-      votes: 10,
-      tags: ['Food', 'Nature']
-    },
-    {
-      id: 2,
-      header: 'BAD BOY',
-      blurb: 'There\'s a BAD BOY in VENICE!!! WATCH OUT!',
-      timestamp: 'Dec 2019',
-      zip: '90039',
-      votes: 2,
-      tags: ['Sketchy', 'Free']
-    },
+    // {
+    //   id: 1,
+    //   header: 'Test Tip',
+    //   blurb: 'This is a test tip',
+    //   timestamp: 'Dec 2019',
+    //   zip: '90039',
+    //   votes: 10,
+    //   tags: ['Food', 'Nature']
+    // },
+    // {
+    //   id: 2,
+    //   header: 'BAD BOY',
+    //   blurb: 'There\'s a BAD BOY in VENICE!!! WATCH OUT!',
+    //   timestamp: 'Dec 2019',
+    //   zip: '90039',
+    //   votes: 2,
+    //   tags: ['Sketchy', 'Free']
+    // },
   ],
   tag: '',
   tempTips: [],
@@ -46,10 +46,8 @@ const tipsReducer = (state = initialState, action) => {
     //////////
     case types.GET_LOCAL_TIPS:
       if(state.zipCode) {
-        
         // Fetch tips from DB with provided zipcode
         // fill currentTips with resulting data
-
         fetch(`/tips/findTips/${state.zipCode}`)
           .then(response => response.json())
           .then(data => {
@@ -65,7 +63,7 @@ const tipsReducer = (state = initialState, action) => {
           .catch(err => {
             console.log('Error in fetch to findTips', err);
 
-            return;
+            return state;
           });
       }
       else return state;

@@ -39,17 +39,16 @@ tipsController.updateVotes = (req, res, next) => {
 };
 
 tipsController.findTips = (req, res, next) => {
-  console.log('within findTips');
   const { zip } = req.params;
-  console.log('req.params', req.params);
 
   const queryString = `
-    SELECT *, tips.id AS "tipId", type AS tag FROM tips
+    SELECT header, timestamp, blurb, zip, votes, tips.id AS "tipId", array_agg(type) AS tags FROM tips
     FULL OUTER JOIN "tipToTags"
     ON tips.id = "tipToTags"."tipId" 
     LEFT OUTER JOIN tags 
     ON "tagId" = tags.id
     WHERE zip = '${zip}'
+    GROUP BY tips.id
     `;
 
   db.query(queryString)

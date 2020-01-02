@@ -11,7 +11,7 @@ import { getZipCode, getLocalTips, upvote, downvote, getDummyTips } from '../act
 
 const mapStateToProps = state => ({
   zipCode: state.tips.zipCode,
-  currentTips: state.tips.currentTips
+  currentTips: state.tips.currentTips,
 });
 
 const mapDispatchToProps = dispatch => ({
