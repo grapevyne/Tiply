@@ -14,9 +14,9 @@ const TipComponent = (props) => (
     </div>
 
     <div className="votes tip-piece">
-      <h3 onClick={() => { props.upvote(props.id) }}><i class="fas fa-arrow-alt-circle-up"></i></h3>
+      <h3 onClick={() => { props.upvote(props.id) }}><i className="fas fa-arrow-alt-circle-up green"></i></h3>
       <h1>{props.votes}</h1>
-      <h3 onClick={() => { props.downvote(props.id) }}><i class="fas fa-arrow-alt-circle-down"></i></h3>
+      <h3 onClick={() => { props.downvote(props.id) }}><i className="fas fa-arrow-alt-circle-down red"></i></h3>
     </div>
 
     <div className="timestamp tip-piece">{props.timestamp}</div>

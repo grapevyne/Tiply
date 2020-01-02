@@ -60,11 +60,10 @@ const tipsReducer = (state = initialState, action) => {
       else return state;
     //////////
     case types.GET_LOCAL_TIPS:
+      console.log(state.zipCode);
       if (state.zipCode) {
-
-        //ADD DATABASE FETCHING LOGIC HERE
-        //HERE, ALL TIPS COINCIDING WITH USER-CHOSEN ZIP CODE
-        //SHOULD FILL AN ARRAY TO BE DISPLAYED IN TipsContainer.jsx
+        // Fetch tips from DB with provided zipcode
+        // fill currentTips with resulting data
         fetch(`/tips/findTips/${state.zipCode}`)
           .then(response => response.json())
           .then(data => {
@@ -80,7 +79,7 @@ const tipsReducer = (state = initialState, action) => {
           .catch(err => {
             console.log('Error in fetch to findTips', err);
 
-            return;
+            return state;
           });
       }
       else return state;
@@ -145,72 +144,72 @@ const tipsReducer = (state = initialState, action) => {
         currentTips,
       };
 
-//////////
+    //////////
     case types.TOGGLE_ADD_TIPS_BUTTON:
-      return { 
+      return {
         ...state,
         toggleAddTipsButton: !state.toggleAddTipsButton,
       };
-      
 
-////////// FOR DEVELOPMENT ONLY
-case types.GET_DUMMY_TIPS:
-  if(!state.zipCode) {
-    currentTips = [
-      {
-        id: 1,
-        header: 'Test Tip',
-        blurb: 'This is a test tip',
-        timestamp: 'Dec 2019',
-        zip: '90039',
-        votes: 10,
-        tags:['Food', 'Nature']
-      },
-      {
-        id: 2,
-        header: 'BAD BOY',
-        blurb: 'There\'s a BAD BOY in VENICE!!! WATCH OUT!',
-        timestamp: 'Dec 2019',
-        zip: '90039',
-        votes: 2,
-        tags:['Sketchy', 'Free']
-      },
-    ]
-    return {
-      ...state,
-      currentTips,
-    };
-  }
-  else return state;
-//////////
 
-case types.INPUT_HEADER:
-  return {
-    ...state,
-    inputHeader: action.payload,
-  }
-//////////
+    ////////// FOR DEVELOPMENT ONLY
+    case types.GET_DUMMY_TIPS:
+      if (!state.zipCode) {
+        currentTips = [
+          {
+            id: 1,
+            header: 'Test Tip',
+            blurb: 'This is a test tip',
+            timestamp: 'Dec 2019',
+            zip: '90039',
+            votes: 10,
+            tags: ['Food', 'Nature']
+          },
+          {
+            id: 2,
+            header: 'BAD BOY',
+            blurb: 'There\'s a BAD BOY in VENICE!!! WATCH OUT!',
+            timestamp: 'Dec 2019',
+            zip: '90039',
+            votes: 2,
+            tags: ['Sketchy', 'Free']
+          },
+        ]
+        return {
+          ...state,
+          currentTips,
+        };
+      }
+      else return state;
+    //////////
 
-case types.INPUT_BLURB:
-  return { 
-    ...state,
-    inputBlurb: action.payload,
-  }
+    case types.INPUT_HEADER:
+      return {
+        ...state,
+        inputHeader: action.payload,
+      }
+    //////////
 
-//////////
+    case types.INPUT_BLURB:
+      return {
+        ...state,
+        inputBlurb: action.payload,
+      }
 
-case types.INPUT_LOCATION:
-  return { 
-    ...state,
-    inputLocation: action.payload,
-  }
+    //////////
 
-//////////
-case types.TOGGLE_TAGS_DROPDOWN:
-  return { 
-    ...state,
-    toggleTagsDropdown: !state.toggleTagsDropdown,
-  }
+    case types.INPUT_LOCATION:
+      return {
+        ...state,
+        inputLocation: action.payload,
+      }
+
+    //////////
+    case types.TOGGLE_TAGS_DROPDOWN:
+      return {
+        ...state,
+        toggleTagsDropdown: !state.toggleTagsDropdown,
+      }
     ////////// FOR DEVELOPMENT ONLY
     // case types.GET_DUMMY_TIPS:
     //   if(!state.zipCode) {

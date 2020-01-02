@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Kaushan+Script|Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Raleway&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -44,6 +44,7 @@ html, body, #root {
 }
 .tag {
     color: whitesmoke;
+    font-size: 10px;
     background: rgb(90, 91, 172);
     width: 60px;
     height: 30px;
@@ -51,7 +52,7 @@ html, body, #root {
     align-items: center;
     cursor: pointer;
     border-radius: 4px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
 ​
 #tips-container {
@@ -69,6 +70,7 @@ html, body, #root {
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(3, 1fr);
     box-shadow: 3px 3px 5px rgba(0,0,0,.3);
+    border-radius: 8px;
 }
 /* tip header h2 */
 .tip-piece {
@@ -88,7 +90,7 @@ html, body, #root {
 .blurb {
     grid-area: 2 / 1 / 2 / span 2;
     justify-content: flex-start;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
 ​
 .tags {
@@ -102,13 +104,19 @@ html, body, #root {
     flex-direction: column;
     justify-content: space-evenly;
 }
+
+.tips-container {
+    width: 100%;
+}
+
 .timestamp {
     grid-area: 3 / 3 / 3 / 3;
 }
 /* grapevyne h1 styling */
 #banner > h1 {
-    font-size: 20pt;
-    background: -webkit-linear-gradient(rgb(2, 38, 92), rgb(73, 182, 215));
+    font-size: 18pt;
+    font-family: 'Open Sans', sans-serif;
+    background: -webkit-linear-gradient(45deg,rgb(90, 0, 169), rgb(73, 182, 215), rgb(60, 123, 232));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -128,28 +136,12 @@ h3 {
     border-radius: 4px;
 }
 ​
-.search-button, .add-button {
-    padding: 4px;
-    font-size: 14pt;
+button, .search-button, .add-button {
+    padding: 2px;
+    font-size: 10pt;
     border-radius: 4px;
     margin: 2px;
-    font-family: 'Open Sans', sans-serif;
 }
-​
-button .search-button {
-    background-color: rgb(51, 122, 252);
-    padding: 4px;
-    color: whitesmoke;
-}
-/* search and add button icon color */
-button > i.fas {
-    color: whitesmoke;
-}
-.add-button {
-    background-color: rgb(5, 194, 144);
-    color: whitesmoke;
-}
-
 .addModal { 
     position: fixed;
     height: 600px;
@@ -159,11 +151,29 @@ button > i.fas {
     right: 0;
     bottom: 0;
     margin: auto;
-    background-color: rgb(178, 211, 244);
+    background-color: rgb(27, 34, 89);
     flex-direction: column;
     display: flex;
+    justify-content: space-evenly;
+     border-radius: 8px;
+}
+.addModal > textarea{
+    max-width: 80%;
+    max-height: 60%;
+}
+.modal-h1 {
+    color: rgb(120, 215, 228);
+}
+.addModal > input, textarea {
+    border-radius: 8px;
 }
 .cancelOrAccept { 
     flex-direction: row;
     display: flex;
+}
+.red {
+    color: rgb(119, 0, 255);
+}
+.green {
+    color: rgb(29, 187, 150);
 }
