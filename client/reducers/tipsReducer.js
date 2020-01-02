@@ -2,35 +2,7 @@ import * as types from '../constants/actionTypes';
 
 const initialState = {
   zipCode: '',
-  currentTips: [
-    // {
-    //   id: 1,
-    //   header: 'Test Tip',
-    //   blurb: 'This is a test tip',
-    //   timestamp: 'Dec 2019',
-    //   zip: '90039',
-    //   votes: 10,
-    //   tags: ['Food', 'Nature']
-    // },
-    // {
-    //   id: 2,
-    //   header: 'BAD BOY',
-    //   blurb: 'There\'s a BAD BOY in VENICE!!! WATCH OUT!',
-    //   timestamp: 'Dec 2019',
-    //   zip: '90039',
-    //   votes: 2,
-    //   tags: ['Sketchy', 'Free']
-    // },
-    // {
-    //   id: 3,
-    //   header: 'PARTY TIME',
-    //   blurb: 'There\'s a PARTY in VENICE!!! COME HERE!',
-    //   timestamp: 'Dec 2019',
-    //   zip: '90291',
-    //   votes: 79,
-    //   tags: ['Food', 'Free', 'Meetup']
-    // },
-  ],
+  currentTips: [],
   tag: '',
   tempTips: [],
   toggleAddTipsButton: false,
@@ -60,11 +32,10 @@ const tipsReducer = (state = initialState, action) => {
       else return state;
     //////////
     case types.GET_LOCAL_TIPS:
-      if (state.zipCode) {
-
-        //ADD DATABASE FETCHING LOGIC HERE
-        //HERE, ALL TIPS COINCIDING WITH USER-CHOSEN ZIP CODE
-        //SHOULD FILL AN ARRAY TO BE DISPLAYED IN TipsContainer.jsx
+      console.log(state.zipCode);
+      if(state.zipCode) {
+        // Fetch tips from DB with provided zipcode
+        // fill currentTips with resulting data
         fetch(`/tips/findTips/${state.zipCode}`)
           .then(response => response.json())
           .then(data => {
@@ -80,7 +51,7 @@ const tipsReducer = (state = initialState, action) => {
           .catch(err => {
             console.log('Error in fetch to findTips', err);
 
-            return;
+            return state;
           });
       }
       else return state;
@@ -152,36 +123,6 @@ const tipsReducer = (state = initialState, action) => {
         toggleAddTipsButton: !state.toggleAddTipsButton,
       };
       
-
-////////// FOR DEVELOPMENT ONLY
-// case types.GET_DUMMY_TIPS:
-//   if(!state.zipCode) {
-//     currentTips = [
-//       {
-//         id: 1,
-//         header: 'Test Tip',
-//         blurb: 'This is a test tip',
-//         timestamp: 'Dec 2019',
-//         zip: '90039',
-//         votes: 10,
-//         tags:['Food', 'Nature']
-//       },
-//       {
-//         id: 2,
-//         header: 'BAD BOY',
-//         blurb: 'There\'s a BAD BOY in VENICE!!! WATCH OUT!',
-//         timestamp: 'Dec 2019',
-//         zip: '90039',
-//         votes: 2,
-//         tags:['Sketchy', 'Free']
-//       },
-//     ]
-//     return {
-//       ...state,
-//       currentTips,
-//     };
-//   }
-//   else return state;
 //////////
 
 case types.INPUT_HEADER:
@@ -210,6 +151,22 @@ case types.TOGGLE_TAGS_DROPDOWN:
   return { 
     ...state,
     toggleTagsDropdown: !state.toggleTagsDropdown,
+  }
+
+/////////
+case types.START_FETCHING_TIPS:
+  return {
+    ...state,
+    currentTips: [...state.currentTips],
+    requesting: true,
+  }
+
+case types.FETCHING_TIPS:
+  console.log("action data: ", action.data)
+  return { 
+    ...state,
+    currentTips: action.data.tips,
+    requesting: false,
   }
     default: {
       return state;

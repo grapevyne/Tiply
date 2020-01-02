@@ -4,8 +4,8 @@ import AddTipModal from './AddTipModal.jsx';
 const Search = props => {
   return ( 
   <div id="search" className="division">
-    <input onChange = {props.getZipCode} type="text" placeholder="Zip Code"></input>
-    <button onClick = {props.getLocalTips} > Enter </button>
+    <input type="text" placeholder="Zip Code" onChange={props.getZipCode} />
+    <button type="button" onClick={ () => props.getLocalTips(props.zipCode)}> Enter </button>
     <input  
     type = "button" 
     value = "Add a Tip" 
