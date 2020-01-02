@@ -9,19 +9,11 @@ import TipsContainer from './TipsContainer.jsx';
 import { getZipCode, getLocalTips, upvote, downvote, getDummyTips, toggleAddTipsButton, } from '../actions/actions';
 
 
-// const mapDispatchToProps = dispatch => ({
-//   toggleAddTipsButton: () => {
-//     dispatch(toggleAddTipsButton())
-//   },
-//   getZipCode: (zipCode) => {
-//     dispatch(getZipCode(zipCode));
-//   }
-// })
-
-// const mapStateToProps = state => ({
-//   zipCode: state.tips.zipCode,
-//   currentTips: state.tips.currentTips
-// });
+const mapStateToProps = state => ({
+  addTipsBoolean: state.tips.toggleAddTipsButton,
+  zipCode: state.tips.zipCode,
+  currentTips: state.tips.currentTips
+});
 
 const mapDispatchToProps = dispatch => ({
   getZipCode: (e) => {
@@ -44,14 +36,6 @@ const mapDispatchToProps = dispatch => ({
   },
 
 }) 
-
-const mapStateToProps = state => ({
-  addTipsBoolean: state.tips.toggleAddTipsButton,
-  zipCode : state.tips.zipCode,
-  currentTips : state.tips.currentTips
-  
-});
-
 
 class MainContainer extends Component {
   constructor(props) {
