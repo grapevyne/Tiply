@@ -46,16 +46,12 @@ const tipsReducer = (state=initialState, action) => {
 //////////
     case types.GET_LOCAL_TIPS:
       if(state.zipCode) {
-        
-        //ADD DATABASE FETCHING LOGIC HERE
-        //HERE, ALL TIPS COINCIDING WITH USER-CHOSEN ZIP CODE
-        //SHOULD FILL AN ARRAY TO BE DISPLAYED IN TipsContainer.jsx
         fetch(`/tips/findTips/${state.zipCode}`)
           .then(response => response.json())
           .then(data => {
             console.log('Response from fetch request to findTips');
             console.log(data.tips);
-            currentTips = data.tips;
+            currentTips = [...data.tips];
 
             return {
               ...state,
@@ -78,6 +74,7 @@ case types.UPVOTE:
       if(currentTips[i].id === action.payload) {
         currentTips[i].votes++;
         console.log('UPVOTED', currentTips[i].header);
+        console.log(state)
         //ADD DATABASE UPVOTE PUT-LOGIC HERE
         //POTENTIALLY UPDATE STATE TO AVOID A SECOND /GET REQUEST??
       }
