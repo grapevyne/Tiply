@@ -7,10 +7,6 @@ class TipsContainer extends Component {
     super(props);
   }
 
-  componentDidUpdate() { 
-    console.log("updated currentTips: ", this.props.currentTips)
-  }
-
   render() {
     return (
       <div id="tips-container">

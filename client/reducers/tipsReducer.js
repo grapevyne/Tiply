@@ -168,7 +168,20 @@ case types.FETCHING_TIPS:
     currentTips: action.data.tips,
     requesting: false,
   }
-    default: {
+
+case types.POST_TIP:
+  return {
+    ...state,
+    requesting: true,
+  }
+
+case types.ADD_TIP:
+  return {
+    ...state,
+    requesting: false,
+  }
+
+  default: {
       return state;
     }
   }

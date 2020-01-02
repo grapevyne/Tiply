@@ -42,6 +42,28 @@ export const toggleTagsDropdown = () => ({
   type: types.TOGGLE_TAGS_DROPDOWN,
   payload: toggleTagsDropdown,
 })
+
+export function addTip(tipData) {
+  return (dispatch) => {
+    console.log('Attempting Post To DB with tipData: ', tipData);
+    dispatch({ type: types.POST_TIP });
+    fetch(`/tips/createTip`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(tipData),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log('Data returned from addTip post request: ');
+        console.log(data);
+      })
+      // .then(data => dispatch({ type: types.ADD_TIP, data }))
+      .catch(err => console.log("Error in addTip: ", err))
+  };
+}
+
 // FOR DEVELOPMENT ONLY
 export const getDummyTips = () => ({
   type: types.GET_DUMMY_TIPS,
