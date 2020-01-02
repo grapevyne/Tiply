@@ -151,7 +151,7 @@ button, .search-button, .add-button {
     right: 0;
     bottom: 0;
     margin: auto;
-    background-color: rgb(27, 34, 89);
+    background-color: rgb(165, 170, 211);
     flex-direction: column;
     display: flex;
     justify-content: space-evenly;
