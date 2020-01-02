@@ -7,9 +7,9 @@ class TipsContainer extends Component {
     super(props);
   }
 
-  // componentDidMount() {
-  //   if(!this.props.currentTips) this.props.getDummyTips()
-  // }
+  componentDidUpdate() { 
+    console.log("updated currentTips: ", this.props.currentTips)
+  }
 
   render() {
     return (

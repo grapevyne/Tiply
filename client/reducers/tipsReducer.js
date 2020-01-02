@@ -3,33 +3,33 @@ import * as types from '../constants/actionTypes';
 const initialState = {
   zipCode: '',
   currentTips: [
-    {
-      id: 1,
-      header: 'Test Tip',
-      blurb: 'This is a test tip',
-      timestamp: 'Dec 2019',
-      zip: '90039',
-      votes: 10,
-      tags: ['Food', 'Nature']
-    },
-    {
-      id: 2,
-      header: 'BAD BOY',
-      blurb: 'There\'s a BAD BOY in VENICE!!! WATCH OUT!',
-      timestamp: 'Dec 2019',
-      zip: '90039',
-      votes: 2,
-      tags: ['Sketchy', 'Free']
-    },
-    {
-      id: 3,
-      header: 'PARTY TIME',
-      blurb: 'There\'s a PARTY in VENICE!!! COME HERE!',
-      timestamp: 'Dec 2019',
-      zip: '90291',
-      votes: 79,
-      tags: ['Food', 'Free', 'Meetup']
-    },
+    // {
+    //   id: 1,
+    //   header: 'Test Tip',
+    //   blurb: 'This is a test tip',
+    //   timestamp: 'Dec 2019',
+    //   zip: '90039',
+    //   votes: 10,
+    //   tags: ['Food', 'Nature']
+    // },
+    // {
+    //   id: 2,
+    //   header: 'BAD BOY',
+    //   blurb: 'There\'s a BAD BOY in VENICE!!! WATCH OUT!',
+    //   timestamp: 'Dec 2019',
+    //   zip: '90039',
+    //   votes: 2,
+    //   tags: ['Sketchy', 'Free']
+    // },
+    // {
+    //   id: 3,
+    //   header: 'PARTY TIME',
+    //   blurb: 'There\'s a PARTY in VENICE!!! COME HERE!',
+    //   timestamp: 'Dec 2019',
+    //   zip: '90291',
+    //   votes: 79,
+    //   tags: ['Food', 'Free', 'Meetup']
+    // },
   ],
   tag: '',
   tempTips: [],
@@ -69,7 +69,7 @@ const tipsReducer = (state = initialState, action) => {
           .then(response => response.json())
           .then(data => {
             console.log('Response from fetch request to findTips');
-            console.log(data.tips);
+            console.log("data from the fetch request ", data.tips);
             currentTips = data.tips;
 
             return {
@@ -154,34 +154,34 @@ const tipsReducer = (state = initialState, action) => {
       
 
 ////////// FOR DEVELOPMENT ONLY
-case types.GET_DUMMY_TIPS:
-  if(!state.zipCode) {
-    currentTips = [
-      {
-        id: 1,
-        header: 'Test Tip',
-        blurb: 'This is a test tip',
-        timestamp: 'Dec 2019',
-        zip: '90039',
-        votes: 10,
-        tags:['Food', 'Nature']
-      },
-      {
-        id: 2,
-        header: 'BAD BOY',
-        blurb: 'There\'s a BAD BOY in VENICE!!! WATCH OUT!',
-        timestamp: 'Dec 2019',
-        zip: '90039',
-        votes: 2,
-        tags:['Sketchy', 'Free']
-      },
-    ]
-    return {
-      ...state,
-      currentTips,
-    };
-  }
-  else return state;
+// case types.GET_DUMMY_TIPS:
+//   if(!state.zipCode) {
+//     currentTips = [
+//       {
+//         id: 1,
+//         header: 'Test Tip',
+//         blurb: 'This is a test tip',
+//         timestamp: 'Dec 2019',
+//         zip: '90039',
+//         votes: 10,
+//         tags:['Food', 'Nature']
+//       },
+//       {
+//         id: 2,
+//         header: 'BAD BOY',
+//         blurb: 'There\'s a BAD BOY in VENICE!!! WATCH OUT!',
+//         timestamp: 'Dec 2019',
+//         zip: '90039',
+//         votes: 2,
+//         tags:['Sketchy', 'Free']
+//       },
+//     ]
+//     return {
+//       ...state,
+//       currentTips,
+//     };
+//   }
+//   else return state;
 //////////
 
 case types.INPUT_HEADER:
@@ -211,36 +211,6 @@ case types.TOGGLE_TAGS_DROPDOWN:
     ...state,
     toggleTagsDropdown: !state.toggleTagsDropdown,
   }
-    ////////// FOR DEVELOPMENT ONLY
-    // case types.GET_DUMMY_TIPS:
-    //   if(!state.zipCode) {
-    //     currentTips = [
-    //       {
-    //         id: 1,
-    //         header: 'Test Tip',
-    //         blurb: 'This is a test tip',
-    //         timestamp: 'Dec 2019',
-    //         zip: '90039',
-    //         votes: 10,
-    //         tags:['Food', 'Nature']
-    //       },
-    //       {
-    //         id: 2,
-    //         header: 'BAD BOY',
-    //         blurb: 'There\'s a BAD BOY in VENICE!!! WATCH OUT!',
-    //         timestamp: 'Dec 2019',
-    //         zip: '90039',
-    //         votes: 2,
-    //         tags:['Sketchy', 'Free']
-    //       },
-    //     ]
-    //     return {
-    //       ...state,
-    //       currentTips,
-    //     };
-    //   }
-    //   else return state;
-    //////////
     default: {
       return state;
     }
