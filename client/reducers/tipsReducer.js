@@ -17,6 +17,7 @@ const tipsReducer = (state = initialState, action) => {
 
   let zipCode;
   let currentTips;
+  let tagListArr;
 
   switch (action.type) {
     //////////
@@ -31,30 +32,30 @@ const tipsReducer = (state = initialState, action) => {
       }
       else return state;
     //////////
-    case types.GET_LOCAL_TIPS:
-      console.log(state.zipCode);
-      if(state.zipCode) {
-        // Fetch tips from DB with provided zipcode
-        // fill currentTips with resulting data
-        fetch(`/tips/findTips/${state.zipCode}`)
-          .then(response => response.json())
-          .then(data => {
-            console.log('Response from fetch request to findTips');
-            console.log("data from the fetch request ", data.tips);
-            currentTips = data.tips;
+    // case types.GET_LOCAL_TIPS:
+    //   console.log(state.zipCode);
+    //   if(state.zipCode) {
+    //     // Fetch tips from DB with provided zipcode
+    //     // fill currentTips with resulting data
+    //     fetch(`/tips/findTips/${state.zipCode}`)
+    //       .then(response => response.json())
+    //       .then(data => {
+    //         console.log('Response from fetch request to findTips');
+    //         console.log("data from the fetch request ", data.tips);
+    //         currentTips = data.tips;
 
-            return {
-              ...state,
-              currentTips,
-            };
-          })
-          .catch(err => {
-            console.log('Error in fetch to findTips', err);
+    //         return {
+    //           ...state,
+    //           currentTips,
+    //         };
+    //       })
+    //       .catch(err => {
+    //         console.log('Error in fetch to findTips', err);
 
-            return state;
-          });
-      }
-      else return state;
+    //         return state;
+    //       });
+    //   }
+    //   else return state;
 
     //////////
     case types.UPVOTE:
@@ -162,12 +163,34 @@ case types.START_FETCHING_TIPS:
   }
 
 case types.FETCHING_TIPS:
-  console.log("action data: ", action.data)
   return { 
     ...state,
     currentTips: action.data.tips,
     requesting: false,
   }
+/////////
+case types.START_FETCHING_TAGS:
+  return { 
+    ...state,
+    tagList: [...state.tagList],
+    requesting: true,
+  }
+
+case types.FETCHING_TAGS:
+  tagListArr = [];
+  for (let i = 0; i < action.data.tags.length; i++) { 
+    tagListArr.push(action.data.tags[i].type)
+  }
+
+
+  return { 
+    ...state,
+    tagList: tagListArr,
+    requesting: false,
+  }
+
+/////////
+
     default: {
       return state;
     }

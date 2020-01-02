@@ -8,7 +8,7 @@ class TipsContainer extends Component {
   }
 
   componentDidUpdate() { 
-    console.log("updated currentTips: ", this.props.currentTips)
+    // console.log("updated currentTips: ", this.props.currentTips)
   }
 
   render() {
