@@ -1,32 +1,49 @@
-const path = require('path');
-
+const path = require("path");
 module.exports = {
-  entry: './client/index.js',
+  entry: path.resolve(__dirname, "client/index.js"),
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, "build"),
+    filename: "bundle.js"
   },
-  mode: 'development',
+  devServer: {
+    publicPath: "/build/",
+    proxy: {
+      "/": "http://localhost:3000"
+    }
+  },
+
+  performance: { 
+    hints: process.env.NODE_ENV === 'production' ? "warning" : false
+  },
+  mode: "production",
   module: {
     rules: [
       {
         test: /\.jsx?/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
+            presets: ["@babel/preset-env", "@babel/preset-react"]
           }
         }
       },
       {
-        test: /\.scss$/,
-        use: [
-          { loader: "style-loader" },
-          { loader: "css-loader" },
-          { loader: "sass-loader" }
-        ],
+        test: /\.s[ac]ss$/i,
+        use: ["style-loader", "css-loader", "sass-loader"]
       },
-    ],
-  },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              esModule: false,
+              publicPath: 'build',
+            }
+          }
+        ],
+      }
+    ]
+  }
 };
