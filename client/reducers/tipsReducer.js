@@ -17,6 +17,7 @@ const tipsReducer = (state = initialState, action) => {
 
   let zipCode;
   let currentTips;
+  let tagListArr;
 
   switch (action.type) {
     //////////
@@ -30,32 +31,6 @@ const tipsReducer = (state = initialState, action) => {
         };
       }
       else return state;
-    //////////
-    case types.GET_LOCAL_TIPS:
-      console.log(state.zipCode);
-      if (state.zipCode) {
-        // Fetch tips from DB with provided zipcode
-        // fill currentTips with resulting data
-        fetch(`/tips/findTips/${state.zipCode}`)
-          .then(response => response.json())
-          .then(data => {
-            console.log('Response from fetch request to findTips');
-            console.log("data from the fetch request ", data.tips);
-            currentTips = data.tips;
-
-            return {
-              ...state,
-              currentTips,
-            };
-          })
-          .catch(err => {
-            console.log('Error in fetch to findTips', err);
-
-            return state;
-          });
-      }
-      else return state;
-
     //////////
     case types.UPVOTE:
 
@@ -190,7 +165,6 @@ const tipsReducer = (state = initialState, action) => {
       }
 
 case types.FETCHING_TIPS:
-  console.log("action data: ", action.data)
   return { 
     ...state,
     currentTips: action.data.tips,
@@ -208,8 +182,23 @@ case types.ADD_TIP:
     ...state,
     requesting: false,
   }
+case types.START_FETCHING_TAGS:
+  return { 
+    ...state,
+    tagList: [...state.tagList],
+    requesting: true,
+  }
 
-  default: {
+case types.FETCHING_TAGS:
+  return { 
+    ...state,
+    tagList: action.data.tags,
+    requesting: false,
+  }
+
+/////////
+
+    default: {
       return state;
     }
   }

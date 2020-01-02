@@ -30,6 +30,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
   tagsDropdownBoolean: state.tips.toggleTagsDropdown,
+  tagList: state.tips.tagList,
   tipData: {
     header: state.tips.inputHeader,
     blurb: state.tips.inputBlurb,

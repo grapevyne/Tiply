@@ -7,6 +7,7 @@ class TipsContainer extends Component {
     super(props);
     this.parseTimestamp = this.parseTimestamp.bind(this);
   }
+
   parseTimestamp(timestamp) {
     const arr = timestamp.split('-');
     const year = arr[0],
