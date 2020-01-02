@@ -3,17 +3,28 @@ const db = require('../models/models');
 const tipsController = {};
 
 tipsController.createTip = (req, res, next) => {
-  const { header, blurb, zip } = req.body;
+  const { header, blurb, zip, tags } = req.body;
   if (header.length !== 0 && blurb.length !== 0 && zip.length === 5) {
     const queryString = `INSERT INTO TIPS (HEADER, BLURB, ZIP, TIMESTAMP, VOTES) VALUES ('${header}', '${blurb}', '${zip}', CURRENT_TIMESTAMP, 0)`;
-    // console.log('inside controller CreateTip');
-    db.query(queryString)
+    const headers = [], blurbs = [];
+    db.query(`SELECT header, blurb FROM TIPS`)
       .then((data) => {
-        // console.log(data)
-        res.locals.message = 'Tip created successfully';
-        next();
+        // console.log(`header`, data.rows)
+        data.rows.forEach((obj) => {
+          headers.push(obj.header);
+          blurbs.push(obj.blurb);
+        });
+
+        if (!headers.includes(header) && !blurbs.includes(blurb)) {
+          db.query(queryString)
+            .then(() => {
+              res.locals.message = 'Tip created successfully';
+              next();
+            })
+            .catch((err) => { console.log(err); return next(err); });
+        }
       })
-      .catch((err) => { console.log(err); return next(err); });
+      .catch((err) => next(err));
   }
 };
 
