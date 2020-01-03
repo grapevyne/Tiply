@@ -64,6 +64,22 @@ export function addTip(tipData) {
   };
 }
 
+//TAGS
+export const selectTag = (tag) => ({
+  type: types.SELECT_TAG,
+  payload: tag,
+});
+
+export const filterTipsByTag = () => ({
+  type: types.FILTER_TIPS_BY_TAG,
+  payload: null,
+});
+
+export const assignTag = (tag) => ({
+  type: types.ASSIGN_TAG,
+  payload: tag,
+});
+
 // FOR DEVELOPMENT ONLY
 export const getDummyTips = () => ({
   type: types.GET_DUMMY_TIPS,
