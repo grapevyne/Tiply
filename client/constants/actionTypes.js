@@ -19,6 +19,7 @@ export const FETCHING_TAGS = "FETCHING_TAGS"
 //TAGS
 export const SELECT_TAG = "SELECT_TAG";
 export const FILTER_TIPS_BY_TAG = "FILTER_TIPS_BY_TAG";
+export const ASSIGN_TAG = "ASSIGN_TAG";
 
 //FOR DEVELOPMENT ONLY
 export const GET_DUMMY_TIPS = 'GET_DUMMY_TIPS';

@@ -75,6 +75,11 @@ export const filterTipsByTag = () => ({
   payload: null,
 });
 
+export const assignTag = (tag) => ({
+  type: types.ASSIGN_TAG,
+  payload: tag,
+});
+
 // FOR DEVELOPMENT ONLY
 export const getDummyTips = () => ({
   type: types.GET_DUMMY_TIPS,

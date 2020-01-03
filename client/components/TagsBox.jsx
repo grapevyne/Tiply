@@ -4,7 +4,6 @@ const TagsBox = (props) => (
 
   <div className="division tagsDiv">
         {props.tagList.map(el => {
-          console.log("this is the el: ", el)
           return <div className="tag" onClick={(e) => { props.selectTag(el); e.target.classList.toggle('selected')}}>{el}</div>
         })}
   </div>

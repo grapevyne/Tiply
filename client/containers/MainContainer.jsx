@@ -47,6 +47,12 @@ const mapDispatchToProps = dispatch => ({
   fetchTags: () => { 
     dispatch(fetchTags())
   },
+
+  //TAGS
+  selectTag: (tag) => {
+    dispatch(selectTag(tag))
+    dispatch(filterTipsByTag())
+  },
 })
 
 class MainContainer extends Component {
@@ -79,6 +85,7 @@ class MainContainer extends Component {
           selectTag={this.props.selectTag}
           filterTipsByTag={this.props.filterTipsByTag}
           fetchTips={this.props.fetchTips}
+          fetchTags={this.props.fetchTags}
           zipCode = {this.props.zipCode}
         />
         <TipsContainer

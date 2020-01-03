@@ -8,6 +8,9 @@ const initialState = {
   inputHeader: '',
   inputBlurb: '',
   inputLocation: '',
+  tagList: ['Sketchy', 'Free', 'Nature', 'Food', 'Extra - Filter Me!', 'hotels'],
+  selectedTags: [],
+  tempTags: [],
   toggleTagsDropdown: false,
   tagList: [],
   selectedTags: [],
@@ -20,9 +23,11 @@ const tipsReducer = (state = initialState, action) => {
   let zipCode;
   let currentTips;
   let tempTips;
+
   let tagList;
   let selectedTags;
   let tempTags;
+  let tagList;
 
   switch (action.type) {
     //////////
@@ -72,10 +77,10 @@ const tipsReducer = (state = initialState, action) => {
         console.log(`ID: `, currentTips[i].tipId)
         if (currentTips[i].tipId === action.payload) {
           currentTips[i].votes--;
-          //console.log('DOWNVOTED', currentTips[i].header);
+          console.log('DOWNVOTED', currentTips[i].header);
           //ADD DATABASE UPVOTE PUT-LOGIC HERE
           //POTENTIALLY UPDATE STATE TO AVOID A SECOND /GET REQUEST??
-          //console.log('currentTips[i] and its id: ', currentTips[i], `id:`, currentTips[i].tipId)
+          console.log('currentTips[i] and its id: ', currentTips[i], `id:`, currentTips[i].tipId)
           fetch(`/tips/updateVotes/${currentTips[i].tipId}`, {
             method: "POST",
             header: {
@@ -244,6 +249,91 @@ const tipsReducer = (state = initialState, action) => {
       return { 
         ...state,
         tagList: [...action.data.tags],
+      currentTips = [...action.data.tips];
+      tempTips = [...currentTips];
+      return { 
+        ...state,
+        currentTips,
+        tempTips,
+        requesting: false,
+      }
+
+    case types.POST_TIP:
+      return {
+        ...state,
+        requesting: true,
+      }
+
+    case types.ADD_TIP:
+      return {
+        ...state,
+        requesting: false,
+      }
+    case types.START_FETCHING_TAGS:
+      tagList = [...state.tagList]
+      return { 
+        ...state,
+        tagList,
+        requesting: true,
+      }
+
+    case types.FETCHING_TAGS:
+      tagList = [...action.data.tags]
+      tagList = tagList.map(el => {
+        return el.type
+      })
+      return { 
+        ...state,
+        tagList,
+        requesting: false,
+      }
+  
+    /////////
+    case types.SELECT_TAG:
+      selectedTags = [...state.selectedTags];
+      if (action.payload) {
+        if(!selectedTags.includes(action.payload)) {
+          selectedTags.push(action.payload)
+        }
+        else {
+          for(let i = 0; i < selectedTags.length; i++) {
+            if(selectedTags[i] === action.payload) {
+              selectedTags.splice(i, i + 1)
+            }
+          }
+        }
+        return {
+          ...state,
+          selectedTags,
+        };
+      }
+      else return state;
+  
+    case types.FILTER_TIPS_BY_TAG:
+      tempTips = [...state.currentTips];
+      selectedTags = [...state.selectedTags];
+      if (state.selectedTags) {
+        tempTips = new Array();
+        state.currentTips.forEach(el => {
+          for(let i = 0; i < el.tags.length; i++) {
+            if(selectedTags.includes(el.tags[i])) {
+              if(!tempTips.includes(el))tempTips.push(el);
+            }
+          }
+        })
+        if(!selectedTags.length) tempTips = [...state.currentTips]
+        return {
+          ...state,
+          tempTips,
+        };
+      }
+      return state;
+
+    case types.ASSIGN_TAG:
+      console.log('TAG ASSIGNED:', action.payload)
+      return {
+        ...state,
+        tagList: action.data.tags,
         requesting: false,
       }
 
