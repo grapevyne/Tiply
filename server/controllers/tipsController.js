@@ -4,6 +4,7 @@ const tipsController = {};
 
 tipsController.createTip = (req, res, next) => {
   const { header, blurb, zip, tags } = req.body;
+  console.log(header, blurb)
   if (header.length !== 0 && blurb.length !== 0 && zip.length === 5) {
     const queryString = `INSERT INTO TIPS (HEADER, BLURB, ZIP, TIMESTAMP, VOTES) VALUES ('${header}', '${blurb}', '${zip}', CURRENT_TIMESTAMP, 0)`;
 
