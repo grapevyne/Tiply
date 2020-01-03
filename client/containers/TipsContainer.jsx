@@ -17,6 +17,10 @@ class TipsContainer extends Component {
     return timeArray;
   }
 
+  componentDidMount() {
+    this.props.getDummyTips()
+  }
+
   render() {
     return (
       <div className="tips-container flex flex-wrap">
