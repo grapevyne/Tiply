@@ -8,7 +8,9 @@ const TipComponent = (props) => {
     <p className="blurb tip-piece">{props.blurb}</p>
 
     <div className="tags tip-piece">
-      {tags}
+      {props.tags.map((el, i) => (
+        <div className="tag" key={`${el}Tag_${i}`}>{el}</div>
+      ))}
     </div>
 
     <div className="votes tip-piece">
