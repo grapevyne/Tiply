@@ -9,12 +9,10 @@ const initialState = {
   inputBlurb: '',
   inputLocation: '',
   tagList: ['Sketchy', 'Free', 'Nature', 'Food', 'Extra - Filter Me!', 'hotels'],
+  tagList: ['Sketchy', 'Free', 'Nature', 'Food', 'Extra - Filter Me!', 'hotels'],
   selectedTags: [],
   tempTags: [],
   toggleTagsDropdown: false,
-  tagList: [],
-  selectedTags: [],
-  tempTags: [],
   currentVote: ''
 };
 
@@ -23,11 +21,10 @@ const tipsReducer = (state = initialState, action) => {
   let zipCode;
   let currentTips;
   let tempTips;
-
-  let tagList;
   let selectedTags;
-  let tempTags;
   let tagList;
+  // let tempTags;
+  // let tagListArr;
 
   switch (action.type) {
     //////////
@@ -114,7 +111,7 @@ const tipsReducer = (state = initialState, action) => {
             id: 1,
             header: 'Test Tip',
             blurb: 'This is a test tip',
-            timestamp: '2020-01-01T03:26:21.977Z',
+            timestamp: 'Dec 2019',
             zip: '90039',
             votes: 10,
             tags: ['Food', 'Nature']
@@ -123,16 +120,14 @@ const tipsReducer = (state = initialState, action) => {
             id: 2,
             header: 'BAD BOY',
             blurb: 'There\'s a BAD BOY in VENICE!!! WATCH OUT!',
-            timestamp: '2020-01-01T03:26:21.977Z',
+            timestamp: 'Dec 2019',
             zip: '90039',
             votes: 2,
             tags: ['Sketchy', 'Free']
           },
         ]
-        tempTips = [...currentTips]
         return {
           ...state,
-          tempTips,
           currentTips,
         };
       }
@@ -170,85 +165,10 @@ const tipsReducer = (state = initialState, action) => {
       return {
         ...state,
         currentTips: [...state.currentTips],
-        tempTips: [...state.currentTips],
         requesting: true,
       }
 
     case types.FETCHING_TIPS:
-      return {
-        ...state,
-        currentTips: action.data.tips,
-        tempTips: action.data.tips,
-        requesting: false,
-      }
-
-    /////////
-    case types.SELECT_TAG:
-      selectedTags = [...state.selectedTags];
-      if (action.payload) {
-        if(!selectedTags.includes(action.payload)) {
-          selectedTags.push(action.payload)
-        }
-        else {
-          for(let i = 0; i < selectedTags.length; i++) {
-            if(selectedTags[i] === action.payload) {
-              selectedTags.splice(i, i + 1)
-            }
-          }
-        }
-        return {
-          ...state,
-          selectedTags,
-        };
-      }
-      else return state;
-  
-    //////////
-    case types.FILTER_TIPS_BY_TAG:
-      tempTips = [...state.currentTips];
-      selectedTags = [...state.selectedTags];
-      if (state.selectedTags) {
-        tempTips = new Array();
-        state.currentTips.forEach(el => {
-          for(let i = 0; i < el.tags.length; i++) {
-            if(selectedTags.includes(el.tags[i])) {
-              if(!tempTips.includes(el))tempTips.push(el);
-            }
-          }
-        })
-        if(!selectedTags.length) tempTips = [...state.currentTips]
-        return {
-          ...state,
-          tempTips,
-        };
-      }
-      return state;
-
-    //////////
-
-    case types.POST_TIP:
-      return {
-        ...state,
-        requesting: true,
-      }
-
-    case types.ADD_TIP:
-      return {
-        ...state,
-        requesting: false,
-      }
-    case types.START_FETCHING_TAGS:
-      return { 
-        ...state,
-        tagList: [...state.tagList],
-        requesting: true,
-      }
-
-    case types.FETCHING_TAGS:
-      console.log("this is the action.data.tags: ", [...action.data.tags])
-      return { 
-        ...state,
-        tagList: [...action.data.tags],
       currentTips = [...action.data.tips];
       tempTips = [...currentTips];
       return { 
