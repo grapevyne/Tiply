@@ -11,7 +11,11 @@ module.exports = {
       "/": "http://localhost:3000"
     }
   },
-  mode: process.env.NODE_ENV,
+
+  performance: { 
+    hints: process.env.NODE_ENV === 'production' ? "warning" : false
+  },
+  mode: "production",
   module: {
     rules: [
       {

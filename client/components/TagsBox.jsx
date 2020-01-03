@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 
 const TagsBox = (props) => (
-  
-  <div id="tagsDiv" className="division">
-    <div className="tag">These</div>
-    <div className="tag">Will</div>
-    <div className="tag">Be</div>
-    <div className="tag">Tags</div>
+
+  <div className="division tagsDiv">
+        {props.tagList.map(el => {
+          return <div className="tag" onClick={(e) => {props.selectTag(el); e.target.classList.toggle('selected')}}>{el}</div>
+        })}
   </div>
 
 );
