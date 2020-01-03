@@ -74,10 +74,10 @@ const tipsReducer = (state = initialState, action) => {
         console.log(`ID: `, currentTips[i].tipId)
         if (currentTips[i].tipId === action.payload) {
           currentTips[i].votes--;
-          //console.log('DOWNVOTED', currentTips[i].header);
+          console.log('DOWNVOTED', currentTips[i].header);
           //ADD DATABASE UPVOTE PUT-LOGIC HERE
           //POTENTIALLY UPDATE STATE TO AVOID A SECOND /GET REQUEST??
-          //console.log('currentTips[i] and its id: ', currentTips[i], `id:`, currentTips[i].tipId)
+          console.log('currentTips[i] and its id: ', currentTips[i], `id:`, currentTips[i].tipId)
           fetch(`/tips/updateVotes/${currentTips[i].tipId}`, {
             method: "POST",
             header: {
@@ -251,8 +251,13 @@ const tipsReducer = (state = initialState, action) => {
 
     case types.ASSIGN_TAG:
       console.log('TAG ASSIGNED:', action.payload)
-      return state;
-    //////////
+      return {
+        ...state,
+        tagList: action.data.tags,
+        requesting: false,
+      }
+
+    /////////
 
     default: {
       return state;
