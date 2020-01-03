@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import AddTipModal from '../components/AddTipModal.jsx';
 import Banner from '../components/Banner.jsx';
 import Search from '../components/Search.jsx';
 import TagsBox from '../components/TagsBox.jsx';
@@ -38,9 +37,17 @@ const mapDispatchToProps = dispatch => ({
   fetchTips: (zip) => { 
     dispatch(fetchTips(zip))
   },
+
+  //TAGS
+  selectTag: (tag) => {
+    dispatch(selectTag(tag))
+    dispatch(filterTipsByTag())
+  },
+
   fetchTags: () => { 
     dispatch(fetchTags())
   },
+
   //TAGS
   selectTag: (tag) => {
     dispatch(selectTag(tag))
@@ -56,6 +63,7 @@ class MainContainer extends Component {
   componentDidMount() { 
     //fetch tags when component mount:
     this.props.fetchTags();
+    console.log("tagList: ", this.props.tagList)
   }
 
   render() {
@@ -66,8 +74,9 @@ class MainContainer extends Component {
           toggleAddTipsButton={this.props.toggleAddTipsButton}
           addTipsBoolean={this.props.addTipsBoolean}
           getZipCode={this.props.getZipCode}
-          fetchTips={this.props.fetchTips}
-          zipCode = {this.props.zipCode}
+          getLocalTips={this.props.getLocalTips}
+          zipCode={this.props.zipCode}
+          tagList={this.props.tagList}
         />
         <TagsBox
           tagList={this.props.tagList}
