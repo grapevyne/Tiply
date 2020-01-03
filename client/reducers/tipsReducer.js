@@ -186,12 +186,12 @@ const tipsReducer = (state = initialState, action) => {
     case types.SELECT_TAG:
       selectedTags = [...state.selectedTags];
       if (action.payload) {
-        if(!selectedTags.includes(action.payload)) {
+        if (!selectedTags.includes(action.payload)) {
           selectedTags.push(action.payload)
         }
         else {
-          for(let i = 0; i < selectedTags.length; i++) {
-            if(selectedTags[i] === action.payload) {
+          for (let i = 0; i < selectedTags.length; i++) {
+            if (selectedTags[i] === action.payload) {
               selectedTags.splice(i, i + 1)
             }
           }
@@ -202,7 +202,7 @@ const tipsReducer = (state = initialState, action) => {
         };
       }
       else return state;
-  
+
     //////////
     case types.FILTER_TIPS_BY_TAG:
       tempTips = [...state.currentTips];
@@ -210,13 +210,13 @@ const tipsReducer = (state = initialState, action) => {
       if (state.selectedTags) {
         tempTips = new Array();
         state.currentTips.forEach(el => {
-          for(let i = 0; i < el.tags.length; i++) {
-            if(selectedTags.includes(el.tags[i])) {
-              if(!tempTips.includes(el))tempTips.push(el);
+          for (let i = 0; i < el.tags.length; i++) {
+            if (selectedTags.includes(el.tags[i])) {
+              if (!tempTips.includes(el)) tempTips.push(el);
             }
           }
         })
-        if(!selectedTags.length) tempTips = [...state.currentTips]
+        if (!selectedTags.length) tempTips = [...state.currentTips]
         return {
           ...state,
           tempTips,
@@ -238,23 +238,19 @@ const tipsReducer = (state = initialState, action) => {
         requesting: false,
       }
     case types.START_FETCHING_TAGS:
-      return { 
+      return {
         ...state,
         tagList: [...state.tagList],
         requesting: true,
       }
 
     case types.FETCHING_TAGS:
-      console.log("this is the action.data.tags: ", [...action.data.tags])
-      return { 
+      //console.log("this is the action.data.tags: ", [...action.data.tags])
+      return {
         ...state,
         tagList: [...action.data.tags],
-      currentTips = [...action.data.tips];
-      tempTips = [...currentTips];
-      return { 
-        ...state,
-        currentTips,
-        tempTips,
+        currentTips =[...action.data.tips],
+        tempTips: [...currentTips],
         requesting: false,
       }
 
@@ -271,7 +267,7 @@ const tipsReducer = (state = initialState, action) => {
       }
     case types.START_FETCHING_TAGS:
       tagList = [...state.tagList]
-      return { 
+      return {
         ...state,
         tagList,
         requesting: true,
@@ -282,22 +278,22 @@ const tipsReducer = (state = initialState, action) => {
       tagList = tagList.map(el => {
         return el.type
       })
-      return { 
+      return {
         ...state,
         tagList,
         requesting: false,
       }
-  
+
     /////////
     case types.SELECT_TAG:
       selectedTags = [...state.selectedTags];
       if (action.payload) {
-        if(!selectedTags.includes(action.payload)) {
+        if (!selectedTags.includes(action.payload)) {
           selectedTags.push(action.payload)
         }
         else {
-          for(let i = 0; i < selectedTags.length; i++) {
-            if(selectedTags[i] === action.payload) {
+          for (let i = 0; i < selectedTags.length; i++) {
+            if (selectedTags[i] === action.payload) {
               selectedTags.splice(i, i + 1)
             }
           }
@@ -308,20 +304,20 @@ const tipsReducer = (state = initialState, action) => {
         };
       }
       else return state;
-  
+
     case types.FILTER_TIPS_BY_TAG:
       tempTips = [...state.currentTips];
       selectedTags = [...state.selectedTags];
       if (state.selectedTags) {
         tempTips = new Array();
         state.currentTips.forEach(el => {
-          for(let i = 0; i < el.tags.length; i++) {
-            if(selectedTags.includes(el.tags[i])) {
-              if(!tempTips.includes(el))tempTips.push(el);
+          for (let i = 0; i < el.tags.length; i++) {
+            if (selectedTags.includes(el.tags[i])) {
+              if (!tempTips.includes(el)) tempTips.push(el);
             }
           }
         })
-        if(!selectedTags.length) tempTips = [...state.currentTips]
+        if (!selectedTags.length) tempTips = [...state.currentTips]
         return {
           ...state,
           tempTips,
