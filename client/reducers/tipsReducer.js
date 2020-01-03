@@ -67,7 +67,9 @@ const tipsReducer = (state = initialState, action) => {
       for (let i = 0; i < currentTips.length; i++) {
         console.log(`ID: `, currentTips[i].tipId)
         if (currentTips[i].tipId === action.payload) {
+          console.log("currentTips before decreasing ",currentTips[i].votes);
           currentTips[i].votes--;
+          console.log("currentTips after decrease ", currentTips[i].votes);
           //console.log('DOWNVOTED', currentTips[i].header);
           //ADD DATABASE UPVOTE PUT-LOGIC HERE
           //POTENTIALLY UPDATE STATE TO AVOID A SECOND /GET REQUEST??
@@ -193,9 +195,14 @@ case types.FETCHING_TAGS:
     tagList: action.data.tags,
     requesting: false,
   }
+///////
+case types.INCREMENTING_VOTE: 
+  return { 
+    ...state,
+    currentTips,
+  }
 
-/////////
-
+///////
     default: {
       return state;
     }

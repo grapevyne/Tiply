@@ -64,6 +64,28 @@ export function addTip(tipData) {
   };
 }
 
+// export function incrementingVote(currentTips, id) { 
+//   return (dispatch) => { 
+//     console.log("this is the selected tip: ", currentTips)
+//     console.log("this is the selected id: ", id)
+//     dispatch({type: types.INCREMENTING_VOTE});
+//     let tip = currentTips.filter(el => el.tipId === id)
+//     console.log("this should be the tip to increment votes: ", tip)
+//     tip[0].votes++;
+    
+//     fetch(`/tips/updateVotes/${tip[0].tip}`, {
+//       method: "POST",
+//       header: {
+//         "Content-Type": "application/json"
+//       },
+//       body: JSON.stringify({ votes: tip[0].votes })
+//     })
+//       .then(res => res.json())
+//       .then(data => console.log(`upvote data: `, data))
+//       .catch(err => console.log(err));
+//   }
+// }
+
 // FOR DEVELOPMENT ONLY
 export const getDummyTips = () => ({
   type: types.GET_DUMMY_TIPS,
