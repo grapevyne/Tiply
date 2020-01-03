@@ -42,10 +42,17 @@ div.division.tagsDiv {
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
+.tagsDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
 .tag {
     color: whitesmoke;
     font-size: 10px;
-    background: rgb(90, 91, 172);
+    background: rgba(90,91,172,0.5);
     width: 60px;
     height: 30px;
     margin: 2px;
@@ -54,6 +61,9 @@ div.division.tagsDiv {
     cursor: pointer;
     border-radius: 4px;
     font-family: 'Raleway', sans-serif;
+}
+.selected {
+    background: rgb(90,91,172,1);
 }
 .tips-container {
     width: 100%;
@@ -163,6 +173,9 @@ input.search-input {
     border-radius: 8px;
     box-shadow: 0px 3px 5px rgba(0,0,0,.7);
 }
+.addModal > .tag {
+    background: whitesmoke;
+}
 .addModal > textarea{
     min-height: 50px;
     max-width: 80%;
@@ -195,8 +208,10 @@ input.search-input {
 }
 .purple {
     color: rgb(119, 0, 255);
+    font-size: 14pt;
 }
 .green {
-    color: rgb(29, 187, 150);
+    color: rgb(34, 214, 172);
+    font-size: 14pt;
 }
 
