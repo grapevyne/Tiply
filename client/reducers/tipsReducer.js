@@ -44,7 +44,7 @@ const tipsReducer = (state = initialState, action) => {
       currentTips = [...state.currentTips]
       for (let i = 0; i < currentTips.length; i++) {
         console.log(`UPVOTE ID: `, currentTips[i].tipId)
-        if (currentTips[i].id === action.payload) {
+        if (currentTips[i].tipId === action.payload) {
           currentTips[i].votes += 1;
           console.log('UPVOTED', currentTips[i].header);
           //ADD DATABASE UPVOTE PUT-LOGIC HERE
@@ -73,6 +73,7 @@ const tipsReducer = (state = initialState, action) => {
       for (let i = 0; i < currentTips.length; i++) {
         console.log(`ID: `, currentTips[i].tipId)
         if (currentTips[i].tipId === action.payload) {
+          console.log("currentTips before decreasing ",currentTips[i].votes);
           currentTips[i].votes--;
           console.log('DOWNVOTED', currentTips[i].header);
           //ADD DATABASE UPVOTE PUT-LOGIC HERE
@@ -197,6 +198,14 @@ const tipsReducer = (state = initialState, action) => {
         requesting: true,
       }
 
+///////
+case types.INCREMENTING_VOTE: 
+  return { 
+    ...state,
+    currentTips,
+  }
+
+///////
     case types.FETCHING_TAGS:
       tagList = [...action.data.tags]
       tagList = tagList.map(el => {

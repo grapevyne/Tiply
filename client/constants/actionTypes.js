@@ -15,6 +15,7 @@ export const POST_TIP = "POST_TIP";
 export const ADD_TIP = "ADD_TIP";
 export const START_FETCHING_TAGS = "START_FETCHING_TAGS";
 export const FETCHING_TAGS = "FETCHING_TAGS"
+export const INCREMENTING_VOTE = "INCREMENTING_VOTE";
 
 //TAGS
 export const SELECT_TAG = "SELECT_TAG";

@@ -25,7 +25,7 @@ class TipsContainer extends Component {
           return <TipComponent
             className='tip'
             key={el.id}
-            id={el.id}
+            id={el.tipId}
             header={el.header}
             blurb={el.blurb}
             timestamp={parsedTime}
@@ -34,7 +34,8 @@ class TipsContainer extends Component {
             tags={el.tags}
             upvote={this.props.upvote}
             downvote={this.props.downvote}
-
+            incrementingVote = {this.props.incrementingVote}
+            currentTips = {this.props.currentTips}
           />
         })}
       </div>

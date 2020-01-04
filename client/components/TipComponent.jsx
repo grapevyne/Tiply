@@ -14,6 +14,8 @@ const TipComponent = (props) => {
     </div>
 
     <div className="votes tip-piece">
+      {/* <h3 onClick={() => { props.upvote(props.id) }} className="green">+</h3> */}
+      {/* <h3 onClick={() => { props.incrementingVote(props.currentTips, props.id) }} className="green">+</h3> */}
       <h2 onClick={() => { props.upvote(props.id) }} className="green">+</h2>
       <h1>{props.votes}</h1>
       <h2 onClick={() => { props.downvote(props.id) }} className="purple">-</h2>
