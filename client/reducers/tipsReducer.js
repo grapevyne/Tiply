@@ -172,7 +172,7 @@ const tipsReducer = (state = initialState, action) => {
     case types.FETCHING_TIPS:
       currentTips = [...action.data.tips];
       tempTips = [...currentTips];
-      return { 
+      return {
         ...state,
         currentTips,
         tempTips,
@@ -192,7 +192,7 @@ const tipsReducer = (state = initialState, action) => {
       }
     case types.START_FETCHING_TAGS:
       tagList = [...state.tagList]
-      return { 
+      return {
         ...state,
         tagList,
         requesting: true,
@@ -211,22 +211,22 @@ case types.INCREMENTING_VOTE:
       tagList = tagList.map(el => {
         return el.type
       })
-      return { 
+      return {
         ...state,
         tagList,
         requesting: false,
       }
-  
+
     /////////
     case types.SELECT_TAG:
       selectedTags = [...state.selectedTags];
       if (action.payload) {
-        if(!selectedTags.includes(action.payload)) {
+        if (!selectedTags.includes(action.payload)) {
           selectedTags.push(action.payload)
         }
         else {
-          for(let i = 0; i < selectedTags.length; i++) {
-            if(selectedTags[i] === action.payload) {
+          for (let i = 0; i < selectedTags.length; i++) {
+            if (selectedTags[i] === action.payload) {
               selectedTags.splice(i, i + 1)
             }
           }
@@ -237,20 +237,20 @@ case types.INCREMENTING_VOTE:
         };
       }
       else return state;
-  
+
     case types.FILTER_TIPS_BY_TAG:
       tempTips = [...state.currentTips];
       selectedTags = [...state.selectedTags];
       if (state.selectedTags) {
         tempTips = new Array();
         state.currentTips.forEach(el => {
-          for(let i = 0; i < el.tags.length; i++) {
-            if(selectedTags.includes(el.tags[i])) {
-              if(!tempTips.includes(el))tempTips.push(el);
+          for (let i = 0; i < el.tags.length; i++) {
+            if (selectedTags.includes(el.tags[i])) {
+              if (!tempTips.includes(el)) tempTips.push(el);
             }
           }
         })
-        if(!selectedTags.length) tempTips = [...state.currentTips]
+        if (!selectedTags.length) tempTips = [...state.currentTips]
         return {
           ...state,
           tempTips,
